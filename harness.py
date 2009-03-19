@@ -5,7 +5,7 @@
 
 import time
 
-n_probs = 18
+n_probs = 24
 fs = []
 for n in range(1,n_probs+1):
     pname = "p%03d" % n

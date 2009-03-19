@@ -34,6 +34,14 @@ def primes():
             fill(_primes[-1]*2)
         yield _primes[i]
 
+def primes_less_than(n):
+    is_prime(n)
+    g = primes()
+    p = g.next()
+    while p < n:
+        yield p
+        p = g.next()
+
 def is_prime(n):
     if n < 2:
         return False

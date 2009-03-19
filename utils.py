@@ -6,7 +6,7 @@ from primes import prime_factors
 
 def fact(x):
     if x<2:
-        return x
+        return 1
     else:
         return reduce(operator.mul, xrange(2,x+1))
 

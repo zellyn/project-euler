@@ -2,6 +2,8 @@
 #
 # I expect I'll need to improve these as the problems get more complex
 
+import math
+
 _primes = [2,3]
 _primes_set = set(_primes)
 _last_try = [3]
@@ -48,6 +50,14 @@ def is_prime(n):
     if n > _last_try[0]:
         fill(n+1)
     return n in _primes_set
+
+def careful_is_prime(n):
+    if n < _last_try[0]:
+        return is_prime(n)
+    for p in primes_less_than(math.sqrt(n)+1):
+        if n % p == 0:
+            return False
+    return True
 
 def prime_factors(n):
     factors = []

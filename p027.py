@@ -17,7 +17,6 @@ def count_primes(a,b):
 
 def p027():
     is_prime(80*80 -79*80 + 1601)
-    print "starting!"
     max = 0
     max_ab = 0
 
@@ -36,8 +35,6 @@ def p027():
             if count > max:
                 max = count
                 max_ab = a * b
-                print "(%d, %d)" % (a,b)
-    print max
     return max_ab
             
 

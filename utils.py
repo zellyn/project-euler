@@ -31,3 +31,14 @@ def divisors(n):
 
 def proper_divisors(n):
     return divisors(n)[:-1]
+
+def read_quoted_words(filename):
+    f = None
+    try:
+        f = open(filename, "r")
+        data = f.read().strip()
+        q_names = data.split(",")
+        names = [q_name[1:-1] for q_name in q_names]
+        return names
+    finally:
+        if f: f.close()

@@ -39,6 +39,8 @@ def hexes():
     
 def p045():
     g = common(common(tris(), pents()), hexes())
+    g.next()
+    g.next()
     return g.next()
 
 

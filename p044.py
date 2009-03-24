@@ -9,7 +9,7 @@
 # Lucky!
 
 def p044():
-    LIMIT = 5000
+    LIMIT = 2200
     pents = [n*(3*n-1)/2 for n in xrange(1,LIMIT*2)]
     assert pents[LIMIT]*2 < pents[-1], "%d < %d" % (pents[LIMIT]*2, pents[-1])
     pents_s = set(pents)

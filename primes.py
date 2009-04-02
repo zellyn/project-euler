@@ -44,11 +44,21 @@ def primes_less_than(n):
         yield p
         p = g.next()
 
+def lazy_is_prime(n):
+    if n < 100000:
+        return is_prime(n)
+    
+    s = math.sqrt(n+1)
+    if s >= _last_try[0]:
+        fill(s+10000)
+
+    return careful_is_prime(n)
+    
 def is_prime(n):
     if n < 2:
         return False
     if n > _last_try[0]:
-        fill(n+1)
+        fill(n+100000)
     return n in _primes_set
 
 def careful_is_prime(n):

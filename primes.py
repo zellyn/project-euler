@@ -33,7 +33,7 @@ def primes():
     while True:
         i += 1
         if i >= len(_primes):
-            fill(_primes[-1]*2)
+            fill(_primes[-1]+100000)
         yield _primes[i]
 
 def primes_less_than(n):
@@ -53,7 +53,12 @@ def lazy_is_prime(n):
         fill(s+10000)
 
     return careful_is_prime(n)
-    
+
+def nth_prime(n):
+    while len(_primes) < n:
+        fill(_last_try[0]+100000)
+    return _primes[n-1]
+
 def is_prime(n):
     if n < 2:
         return False

@@ -19,7 +19,7 @@ def intlen(n):
 known = {}
 def co_concat_prime(x, y):
     if (x,y) not in known:
-        if (x % 3 + y % 3) % 3 ==0:
+        if (x + y) % 3 ==0:
             known[(x,y)] = False
             return False
         mx = 10 ** intlen(x)

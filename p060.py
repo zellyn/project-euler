@@ -19,6 +19,9 @@ def intlen(n):
 known = {}
 def co_concat_prime(x, y):
     if (x,y) not in known:
+        if (x % 3 + y % 3) % 3 ==0:
+            known[(x,y)] = False
+            return False
         mx = 10 ** intlen(x)
         my = 10 ** intlen(y)
         c1 = mx*y + x
@@ -41,8 +44,9 @@ def all_co_good(p1, p2):
 def tup1_gen():
     for p1 in primes():
         for p2 in primes_less_than(p1):
-            if co_concat_prime(p2, p1):
-                yield (p2,p1)
+            if p1 != 2 and p1 != 5 and p2 != 2 and p2 != 5:
+                if co_concat_prime(p2, p1):
+                    yield (p2,p1)
 
 def tup_n_prime_good(tup, pr):
     for t in tup[:-1]:
@@ -71,7 +75,7 @@ def p060():
     g = tup1_gen()
     g = tup_gen(g)
     g = tup_gen(g)
-    g = tup_gen(g, prnt=True)
+    g = tup_gen(g)
     return sum(g.next())
 
 if __name__=='__main__':

@@ -4,17 +4,22 @@
 
 import math
 
-_primes = [2,3]
+_primes = [2,3,5]
 _primes_set = set(_primes)
-_last_try = [3]
+_last_try = [5]
+_inc = [2]
 
 def fill(limit):
     new_primes = set()
     last_try = _last_try[0]
+    inc = _inc[0]
     while last_try < limit:
         prime = False
         while not prime:
-            last_try += 2
+            last_try += inc
+            inc = 6 - inc
+            if last_try == 5:
+                print "last_try==%d" % last_try
             prime = True
             for p in _primes:
                 if p*p > last_try:
@@ -27,6 +32,7 @@ def fill(limit):
             new_primes.add(last_try)
     _primes_set.update(new_primes)
     _last_try[0] = last_try
+    _inc[0] = inc
 
 def primes():
     i = -1
@@ -45,14 +51,19 @@ def primes_less_than(n):
         p = g.next()
 
 def lazy_is_prime(n):
-    if n < 100000:
+    if n < 100000 or n < _last_try[0]:
         return is_prime(n)
     
     s = math.sqrt(n+1)
     if s >= _last_try[0]:
         fill(s+10000)
 
-    return careful_is_prime(n)
+    for p in _primes:
+        if p*p > n:
+            return True
+        if n % p == 0:
+            return False
+    return True
 
 def nth_prime(n):
     while len(_primes) < n:
@@ -67,12 +78,7 @@ def is_prime(n):
     return n in _primes_set
 
 def careful_is_prime(n):
-    if n < _last_try[0]:
-        return is_prime(n)
-    for p in primes_less_than(math.sqrt(n)+1):
-        if n % p == 0:
-            return False
-    return True
+    return lazy_is_prime(n)
 
 def prime_factors(n):
     factors = []

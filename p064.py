@@ -13,7 +13,7 @@ def p064():
     count = 0
     for i in xrange(2,LIMIT+1):
         cf = cf_sqrt(i)
-        if len(cf[1]) % 2:
+        if len(cf) > 1 and len(cf[1]) % 2:
             count += 1
     return count
 

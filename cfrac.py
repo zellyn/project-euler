@@ -14,7 +14,7 @@ def cf_sqrt(n):
     s = int(sqrt(n))
     tup = ()
     if s*s==n:
-        return (s, tup)
+        return (s,)
 
     r = 0
     d = 1

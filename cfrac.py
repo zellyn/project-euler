@@ -5,6 +5,8 @@
 
 from math import sqrt
 
+from utils import gcd
+
 def cf_sqrt(n):
     """
     http://www.mcs.surrey.ac.uk/Personal/R.Knott/Fibonacci/cfINTRO.html#sqrtalgsalg
@@ -45,3 +47,38 @@ def cf_e():
         yield i
         yield 1
         i += 2
+
+def _enumerate(cf):
+    """Enumerate numbers in a continued fraction, handling repeats"""
+    for x in cf:
+        if type(x) in [list, tuple]:
+            while True:
+                for y in x:
+                    yield y
+        yield x
+
+def convergents(cf):
+    """
+    Enumerate the convergents of a continued fraction, using
+    http://en.wikipedia.org/wiki/Fundamental_recurrence_formulas
+    """
+    
+    iter = _enumerate(cf)
+
+    b_nm1 = iter.next()
+    A_nm1 = b_nm1
+    B_nm1 = 1
+    yield (A_nm1, B_nm1)
+
+    b_n = iter.next()
+    A_n = b_n * b_nm1 + 1
+    B_n = b_n
+    yield (A_n, B_n)
+
+    while True:
+        b_np1 = iter.next()
+        A_np1 = b_np1*A_n + A_nm1
+        B_np1 = b_np1*B_n + B_nm1
+        yield (A_np1, B_np1)
+        A_nm1, B_nm1, b_nm1 = A_n, B_n, b_n
+        A_n, B_n, b_n = A_np1, B_np1, b_np1

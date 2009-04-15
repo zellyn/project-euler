@@ -10,24 +10,10 @@
 import itertools
 
 from utils import gcd
-from cfrac import cf_e
-
-def convergent(c_frac):
-    r = reversed(list(c_frac))
-    n = r.next()
-    d = 1
-
-    for i in r:
-        n,d = d+n*i,n
-        g = gcd(n,d)
-        n /= g
-        d /= g
-
-    return (n,d)
+from cfrac import cf_e, convergents
 
 def p065():
-    cf = itertools.islice(cf_e(), 100)
-    n,d = convergent(cf)
+    n,d = itertools.islice(convergents(cf_e()), 99, 100).next()
     return sum((int(c) for c in str(n)))
 
 if __name__=='__main__':

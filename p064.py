@@ -8,16 +8,8 @@
 
 from math import sqrt
 
-def gcd(x,y):
-    if x<y:
-        return gcd(y,x)
+from utils import gcd
 
-    r = x%y
-    if r==0:
-        return y
-
-    return gcd(y,r)
-    
 def c_sqrt(n):
     """
     http://www.mcs.surrey.ac.uk/Personal/R.Knott/Fibonacci/cfINTRO.html#sqrtalgsalg

@@ -59,3 +59,13 @@ def all_pandigitals_as_strings():
         s = all[:i][::-1]
         for p in string_permutations(s):
             yield(p)
+
+def gcd(x,y):
+    if x<y:
+        return gcd(y,x)
+
+    r = x%y
+    if r==0:
+        return y
+
+    return gcd(y,r)

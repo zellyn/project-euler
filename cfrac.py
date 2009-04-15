@@ -36,3 +36,12 @@ def cf_sqrt(n):
         else:
             tup = tup + (2 * s,)
             return (s,tup)
+
+def cf_e():
+    yield 2
+    i = 2
+    while True:
+        yield 1
+        yield i
+        yield 1
+        i += 2

@@ -10,6 +10,7 @@
 import itertools
 
 from utils import gcd
+from cfrac import cf_e
 
 def convergent(c_frac):
     r = reversed(list(c_frac))
@@ -23,15 +24,6 @@ def convergent(c_frac):
         d /= g
 
     return (n,d)
-
-def cf_e():
-    yield 2
-    i = 2
-    while True:
-        yield 1
-        yield i
-        yield 1
-        i += 2
 
 def p065():
     cf = itertools.islice(cf_e(), 100)

@@ -60,13 +60,6 @@ def gen_func(fg_s):
             z = s - first - y
             if y in available and z in available and y != x and y != z and x != z:
                 yield (fg + (x,y,z), s)
-                
-    
-def outers(fg):
-    return fg[1::2]
-
-def inners(fg):
-    return fg[::2]
 
 def triples(fg):
     return [(fg[i+1],fg[i],fg[(i+2)%SIZE]) for i in xrange(0, SIZE, 2)]

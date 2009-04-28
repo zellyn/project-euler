@@ -6,7 +6,7 @@
 # What is the value of the first triangle number to have over five
 # hundred divisors?
 
-from primes import prime_factors
+from primes import prime_factors, is_prime
 
 def tri(x):
     return x*(x+1)/2

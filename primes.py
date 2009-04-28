@@ -51,7 +51,7 @@ def primes_less_than(n):
         p = g.next()
 
 def lazy_is_prime(n):
-    if n < 100000 or n < _last_try[0]:
+    if n < 1000000 or n < _last_try[0]:
         return is_prime(n)
     
     s = math.sqrt(n+1)
@@ -81,7 +81,7 @@ def careful_is_prime(n):
     return lazy_is_prime(n)
 
 def prime_factors(n):
-    if is_prime(n):
+    if lazy_is_prime(n):
         return [(n,1)]
     factors = []
     for p in _primes:

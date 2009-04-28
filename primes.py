@@ -81,8 +81,10 @@ def careful_is_prime(n):
     return lazy_is_prime(n)
 
 def prime_factors(n):
+    if is_prime(n):
+        return [(n,1)]
     factors = []
-    for p in primes():
+    for p in _primes:
         if p>n:
             return factors
         count = 0
@@ -92,3 +94,16 @@ def prime_factors(n):
         if count:
             factors.append((p, count))
     return factors
+
+def prime_factors_no_counts(n):
+    if is_prime(n):
+        return [n]
+    factors = []
+    for p in _primes:
+        if p > n:
+            return factors
+        if not n % p:
+            factors.append(p)
+            n = n / p
+            while not n % p:
+                n = n / p

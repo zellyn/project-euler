@@ -8,12 +8,12 @@
 
 # See http://en.wikipedia.org/wiki/Euler%27s_totient_function#Computing_Euler.27s_function
 
-from primes import prime_factors, primes
+from primes import prime_factors_no_counts, primes
 
 def totient(n):
-    factors = (factor for factor, count in prime_factors(n))
+    factors = prime_factors_no_counts(n)
     def fact_mul(n, fact):
-        return n * (fact-1) / fact
+       return n * (fact-1) / fact
     return reduce(fact_mul, factors, n)
 
 def max_n_lt(limit):

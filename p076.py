@@ -7,7 +7,7 @@
 # How many different ways can one hundred be written as a sum of at
 # least two positive integers?
 
-# 50: 204226
+# Forums suggest looking at http://mathworld.wolfram.com/PartitionFunctionP.html
 
 # Try p031 approach, with memoization
 MEMO = {}

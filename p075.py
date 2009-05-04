@@ -24,7 +24,6 @@ def generate_triples(total_length_limit):
     triples = set()
     max_m = int(math.sqrt((total_length_limit)//2))
     for m in xrange(1, max_m+1):
-        print "%d / %d" % (m, max_m)
         max_n = (total_length_limit - 2 * m * m) // (2 * m)
         max_n = min(max_n, m-1)
         for n in xrange(1, max_n+1):

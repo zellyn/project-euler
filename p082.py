@@ -6,6 +6,8 @@
 #
 # Find the minimal path sum from the left column to the right column.
 
+import sys
+
 def p082():
     filename = 'p081_matrix.txt'
     rows = [[int(i) for i in line.strip().split(',')] for line in open(filename)]

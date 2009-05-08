@@ -7,6 +7,8 @@
 # Find the minimal path sum from the top left to the bottom right by
 # moving right and down.
 
+import sys
+
 def p081():
     last = None
     for line in open('p081_matrix.txt'):

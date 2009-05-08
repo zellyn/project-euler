@@ -42,7 +42,7 @@ def p079():
     keys = sorted(set(keys))
 
     for index, key in enumerate(keys):
-        print '%d/%d: %s (%d)' % (index+1, len(keys), key, len(codes))
+        # print '%d/%d: %s (%d)' % (index+1, len(keys), key, len(codes))
         new_codes = set()
         for code in codes:
             for i in inserts(code, key):

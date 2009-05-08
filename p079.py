@@ -51,7 +51,7 @@ def p079():
         min_len = min(len(c) for c in new_codes)
         codes = [c for c in new_codes if len(c) <= min_len+BUFFER]
 
-    return sorted(codes, key=len)[0]
+    return int(sorted(codes, key=len)[0])
 
 if __name__=='__main__':
     print p079()

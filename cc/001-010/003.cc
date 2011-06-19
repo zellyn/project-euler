@@ -13,7 +13,6 @@ int main(char argv[]) {
   Primes1<longint> primes;
   longint limit = sqrt(product);
   longint max = 0;
-  printf("%ld\n", product);
   while (true) {
     longint prime = primes.next();
     if (prime > limit) {

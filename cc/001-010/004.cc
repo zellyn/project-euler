@@ -16,10 +16,16 @@ int palindrome(int n) {
 
 int main(char argv[]) {
   int max = 0;
-  for (int i = 100; i < 1000; i++) {
-    for (int j = 100; j < 1000; j++) {
+  for (int i = 999; i > 99; i--) {
+    if (999 * i <= max) {
+      break;
+    }
+    for (int j = 999; j >= i; j--) {
       int product = i * j;
-      if ((product > max) && palindrome(product)) {
+      if (product <= max) {
+        break;
+      }
+      if (palindrome(product)) {
         max = product;
       }
     }

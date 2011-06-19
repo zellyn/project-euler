@@ -12,5 +12,5 @@ int main(char argv[]) {
       total += i;
     }
   }
-  printf("Total: %d\n", total);
+  printf("%d\n", total);
 }

@@ -11,9 +11,6 @@ int main(char argv[]) {
   int total = 0;
   int f = fib.next();
   while (f < 4e6) {
-    if (f < 100) {
-      printf("  %d - %d\n", f, total);
-    }
     if (! (f&1)) {
       total += f;
     }

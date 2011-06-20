@@ -47,6 +47,17 @@ class Primes1 {
     return vec;
   }
 
+  int num_divisors(T product) {
+    std::vector<std::pair<T, int> > v = factor(product);
+    int num = 1;
+    typename std::vector<std::pair<T, int> >::iterator it;
+    for(it = v.begin(); it != v.end(); ++it) {
+      int count = it->second;
+      num *= (count+1);
+    }
+    return num;
+  }
+
  private:
   T add() {
      while (true) {

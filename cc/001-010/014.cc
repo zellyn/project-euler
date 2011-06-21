@@ -7,18 +7,15 @@
 #include <map>
 
 int len(long int n, std::map<long int, int>& m) {
-  if (n == 1) {
-    return 1;
-  }
-
   if (m.count(n)) {
     return m[n];
   }
-  int count = 1;
+  int count = 0;
   if (n&1) {
-    count = count + len(3*n+1, m);
+    // Going up immediately goes down
+    count = 2 + len((3*n+1)>>1, m);
   } else {
-    count = count + len(n/2, m);
+    count = 1 + len(n>>1, m);
   }
   m[n] = count;
   return count;
@@ -28,7 +25,10 @@ int main(char argv[]) {
   int max = 0;
   int nmax = 0;
   std::map<long int, int> m;
-  for (long int i = 1; i < 1e6; i++) {
+  m[1] = 1;
+  // Best guesses are 3, 7, 11, ...
+  for (long int i = 3; i < 1e6; i+=4) {
+    if (m.count(i)) continue;
     int l = len(i, m);
     if (l > max) {
       max = l;

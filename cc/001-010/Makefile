@@ -1,6 +1,6 @@
 CPP = g++
 OFLAG = -o
-CPPFLAGS = -Wall
+CPPFLAGS = -Wall -O3
 .SUFFIXES : .o .cpp .c
 .cpp.o :
 	$(CPP) $(CPPFLAGS) -c $<

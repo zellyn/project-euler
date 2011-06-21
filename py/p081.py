@@ -11,7 +11,7 @@ import sys
 
 def p081():
     last = None
-    for line in open('p081_matrix.txt'):
+    for line in open('../data/p081_matrix.txt'):
         nums = [int(i) for i in line.strip().split(',')]
         if last is None:
             last = [0] + [sys.maxint] * (len(nums)-1)

@@ -8,7 +8,7 @@
 def read_names():
     f = None
     try:
-        f = open("p022_names.txt", "r")
+        f = open("../data/p022_names.txt", "r")
         data = f.read().strip()
         q_names = data.split(",")
         names = [q_name[1:-1] for q_name in q_names]

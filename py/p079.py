@@ -38,7 +38,7 @@ def inserts(password, key):
 def p079():
     BUFFER = 1
     codes = ['']
-    keys = [l.strip() for l in open('p079_keylog.txt')]
+    keys = [l.strip() for l in open('../data/p079_keylog.txt')]
     keys = sorted(set(keys))
 
     for index, key in enumerate(keys):

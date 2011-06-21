@@ -68,7 +68,7 @@ def kinds(cards):
     for card in cards:
         counts.setdefault(value(card),[]).append(card)
     return sorted(counts.values(), reverse=True, cmp=my_cmp)
-    
+
 
 def make_score(main_score, card1=None, card2=None):
     score = main_score
@@ -119,7 +119,7 @@ def winner(hand1, hand2):
     hand2 = ordered(hand2)
     p1score = score(hand1)
     p2score = score(hand2)
-    
+
     if p1score > p2score:
         return 1
     if p2score > p1score:
@@ -134,7 +134,7 @@ def read_hands(filename):
     return (line_2_hands(line) for line in open(filename, "r"))
 
 def p054():
-    winners = (winner(*hands) for hands in read_hands("p054_poker.txt"))
+    winners = (winner(*hands) for hands in read_hands("../data/p054_poker.txt"))
     return sum((winner for winner in winners if winner == 1))
 
 

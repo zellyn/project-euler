@@ -10,7 +10,7 @@
 import sys
 
 def p083():
-    filename = 'p081_matrix.txt'
+    filename = '../data/p081_matrix.txt'
     rows = [[int(i) for i in line.strip().split(',')] for line in open(filename)]
     # rows = [[131, 673, 234, 103, 18],
     #         [201, 96, 342, 965, 150],

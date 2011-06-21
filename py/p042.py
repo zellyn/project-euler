@@ -12,7 +12,7 @@ def score(name):
 
 def p042():
     triangles = set((n*(n+1)/2 for n in xrange(1,1000)))
-    words = read_quoted_words('p042_words.txt')
+    words = read_quoted_words('../data/p042_words.txt')
     return sum((1 for w in words if score(w) in triangles))
 
 if __name__=='__main__':

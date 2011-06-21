@@ -33,7 +33,7 @@ def from_roman(r):
 
 def p089():
     total = 0
-    for line in open('p089_roman.txt'):
+    for line in open('../data/p089_roman.txt'):
         roman_in = line.strip()
         roman_out = to_roman(from_roman(roman_in))
         total += len(roman_in) - len(roman_out)

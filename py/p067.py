@@ -9,7 +9,7 @@
 from p018 import make_tri, max_path
 
 def p067():
-    f = open('p067_triangle.txt')
+    f = open('../data/p067_triangle.txt')
     text = f.read()
     f.close()
     return max_path(make_tri(text))

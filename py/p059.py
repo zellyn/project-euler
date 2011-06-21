@@ -15,7 +15,7 @@ SAMPLE_TRIGRAMS = [tuple([ord(c) for c in w]) for w in [' th', 'he ',
 def read_bytes():
     f = None
     try:
-        f = open("p059_cipher1.txt", "r")
+        f = open("../data/p059_cipher1.txt", "r")
         data = f.read().strip()
         str_bytes = data.split(",")
         bytes = [int(s_b) for s_b in str_bytes]

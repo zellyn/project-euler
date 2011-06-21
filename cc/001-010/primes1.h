@@ -5,6 +5,8 @@
 #include <vector>
 #include <math.h>
 
+using namespace std;
+
 template <class T>
 class Primes1 {
  public:
@@ -25,14 +27,14 @@ class Primes1 {
     return primes[index];
   }
 
-  std::vector<std::pair<T, int> > factor(T product) {
-    std::vector<std::pair<T, int> > vec;
+  vector<pair<T, int> > prime_factors(T product) {
+    vector<pair<T, int> > vec;
     T limit = sqrt(product);
     size_t index = 0;
     while (product > 1) {
       T prime = get(index++);
       if (prime > limit) {
-        vec.push_back(std::make_pair(product, 1));
+        vec.push_back(make_pair(product, 1));
         return vec;
       }
       if (product % prime == 0) {
@@ -41,21 +43,43 @@ class Primes1 {
           count++;
           product = product / prime;
         }
-        vec.push_back(std::make_pair(prime, count));
+        vec.push_back(make_pair(prime, count));
       }
     }
     return vec;
   }
 
   int num_divisors(T product) {
-    std::vector<std::pair<T, int> > v = factor(product);
+    vector<pair<T, int> > v = prime_factors(product);
     int num = 1;
-    typename std::vector<std::pair<T, int> >::iterator it;
+    typename vector<pair<T, int> >::iterator it;
     for(it = v.begin(); it != v.end(); ++it) {
       int count = it->second;
       num *= (count+1);
     }
     return num;
+  }
+
+  vector<T> divisors(T product) {
+    vector<T> vec;
+    vec.push_back(1);
+    vector<pair<T, int> > primes = prime_factors(product);
+
+    typename vector<pair<T, int> >::iterator it;
+    for(it = primes.begin(); it != primes.end(); ++it) {
+      T prime = it->first;
+      int count = it->second;
+      T mult = 1;
+      size_t l = vec.size();
+      for (int i=0; i<count; i++) {
+        mult *= prime;
+        for (size_t j=0; j<l; j++) {
+          vec.push_back(vec[j] * mult);
+        }
+      }
+    }
+    vec.pop_back();
+    return vec;
   }
 
  private:
@@ -82,7 +106,7 @@ class Primes1 {
   T last;
    size_t size;
    size_t counter;
-   std::vector<T> primes;
+   vector<T> primes;
 };
 
 #endif  // PRIMES1_H

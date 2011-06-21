@@ -14,7 +14,7 @@ int main(char argv[]) {
   Primes1<longint> primes;
   std::map<longint, int> m;
   for (int i=1; i<=20; i++) {
-    std::vector<factor_pair> v = primes.factor(i);
+    std::vector<factor_pair> v = primes.prime_factors(i);
     for(std::vector<factor_pair>::iterator it = v.begin(); it != v.end(); ++it) {
       longint prime = it->first;
       int count = it->second;

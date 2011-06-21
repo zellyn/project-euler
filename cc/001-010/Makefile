@@ -12,3 +12,6 @@ CPPFLAGS = -Wall -O3
 005: 005.cc primes1.h
 007: 007.cc primes1.h
 010: 010.cc primes1.h
+016: 016.cc bigmath.h
+020: 020.cc bigmath.h
+021: 021.cc primes1.h

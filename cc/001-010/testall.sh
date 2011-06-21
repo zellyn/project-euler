@@ -26,10 +26,11 @@ for pair in $pairs
 do
     testnum=${pair%-*}
     expected=${pair#*-}
-    [[ -f $testnum ]] || echo "$testnum doesn't exist"
+    echo -n "$testnum: "
+    [[ -f $testnum ]] || echo "doesn't exist"
     [[ -f $testnum ]] || exit
-    a=$(./$testnum) || echo "Error running $testnum"
-    [ "$a" == "$expected" ] && echo "$testnum: passed" || echo "Wrong answer for $testnum: Expected $expected got $a"
+    a=$(./$testnum) || echo "Error running"
+    [ "$a" == "$expected" ] && echo "passed" || echo "Wrong answer: Expected $expected, got $a."
     [ "$a" == "$expected" ] || exit;
 done
 

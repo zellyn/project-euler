@@ -82,6 +82,15 @@ class Primes1 {
     return vec;
   }
 
+  int sum_divisors(int i) {
+    vector<int> d = divisors(i);
+    int sum = 0;
+    for (vector<int>::iterator it = d.begin(); it != d.end(); it++) {
+      sum += *it;
+    }
+    return sum;
+  }
+
  private:
   T add() {
      while (true) {

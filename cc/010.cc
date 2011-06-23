@@ -5,12 +5,10 @@
 #include <cstdio>
 #include "primes1.h"
 
-typedef long int longint;
-
 int main(char argv[]) {
-  Primes1<longint> primes;
-  longint sum = 0;
-  longint p;
+  Primes1<long> primes;
+  long sum = 0;
+  long p;
   while ((p = primes.next()) < 2e6) {
     sum += p;
   }

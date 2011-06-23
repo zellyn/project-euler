@@ -5,9 +5,7 @@
 #include <cstdio>
 #include "primes1.h"
 
-typedef long int longint;
-
 int main(char argv[]) {
-  Primes1<longint> primes;
+  Primes1<long> primes;
   printf("%ld\n", primes.get(10000));
 }

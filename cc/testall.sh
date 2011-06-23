@@ -1,10 +1,21 @@
 #! /usr/bin/bash
 
+tests='bigmath_test'
 echo "Building............................."
 
-make 00{1..9} 0{10..30} > /dev/null
+make $tests 00{1..9} 0{10..30} > /dev/null
+[[ "$?" != "0" ]] && exit
 
 echo "Testing.............................."
+
+for atest in $tests
+do
+    echo -n "$atest:"
+    ./$atest
+    a=$?
+    [[ "$a" == "0" ]] && echo 'passed.' || echo 'failed.'
+    [[ "$a" == "0" ]] || exit
+done
 
 pairs="001-233168 002-4613732 003-6857 004-906609 005-232792560\
  006-25164150 007-104743 008-40824 009-31875000 010-142913828922\

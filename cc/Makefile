@@ -16,3 +16,4 @@ CPPFLAGS = -Wall -O3
 020: 020.cc bigmath.h
 021: 021.cc primes1.h
 023: 023.cc primes1.h
+bigmath_test: bigmath_test.cc bigmath.h

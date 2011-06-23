@@ -6,15 +6,13 @@
 #include <cstdio>
 #include <math.h>
 
-typedef long int longint;
-
 int main(char argv[]) {
-  longint product = 600851475143;
-  Primes1<longint> primes;
-  longint limit = sqrt(product);
-  longint max = 0;
+  long product = 600851475143;
+  Primes1<long> primes;
+  long limit = sqrt(product);
+  long max = 0;
   while (true) {
-    longint prime = primes.next();
+    long prime = primes.next();
     if (prime > limit) {
       break;
     }

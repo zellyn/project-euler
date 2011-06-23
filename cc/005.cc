@@ -7,24 +7,23 @@
 #include <map>
 #include "primes1.h"
 
-typedef long int longint;
-typedef std::pair<longint, int> factor_pair;
+typedef std::pair<long, int> factor_pair;
 
 int main(char argv[]) {
-  Primes1<longint> primes;
-  std::map<longint, int> m;
+  Primes1<long> primes;
+  std::map<long, int> m;
   for (int i=1; i<=20; i++) {
     std::vector<factor_pair> v = primes.prime_factors(i);
     for(std::vector<factor_pair>::iterator it = v.begin(); it != v.end(); ++it) {
-      longint prime = it->first;
+      long prime = it->first;
       int count = it->second;
       if (!m.count(prime) || (count > m[prime])) {
         m[prime] = count;
       }
     }
   }
-  longint result = 1;
-  std::map<longint, int>::iterator it;
+  long result = 1;
+  std::map<long, int>::iterator it;
   for (it = m.begin(); it != m.end(); it++) {
     for (int j = 0; j < it->second; j++) {
       result *= it->first;

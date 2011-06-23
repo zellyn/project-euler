@@ -4,7 +4,29 @@
 // digits?
 
 #include <cstdio>
+#include "math.h"
+#include "bigmath.h"
 
 int main(char argv[]) {
-  printf("%d\n", 0);
+  BigUnsigned target(1);
+  for (int i=1000; i > 1; i--) {
+    target *= 10;
+  }
+  BigUnsigned a(1);
+  BigUnsigned b(1);
+  BigUnsigned* smaller = &a;
+  BigUnsigned* larger = &b;
+  BigUnsigned* t;
+  int i = 3;
+  while (true) {
+    *smaller += *larger;
+    t = smaller;
+    smaller = larger;
+    larger = t;
+    if (*larger >= target) {
+      break;
+    }
+    i++;
+  }
+  printf("%d\n", i);
 }

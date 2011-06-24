@@ -4,6 +4,7 @@
 #include <utility>
 #include <vector>
 #include <math.h>
+#include <algorithm>
 
 using namespace std;
 
@@ -82,13 +83,23 @@ class Primes1 {
     return vec;
   }
 
-  int sum_divisors(int i) {
-    vector<int> d = divisors(i);
-    int sum = 0;
+  int sum_divisors(T i) {
+    vector<T> d = divisors(i);
+    T sum = 0;
     for (vector<int>::iterator it = d.begin(); it != d.end(); it++) {
       sum += *it;
     }
     return sum;
+  }
+
+  bool is_prime(T candidate) {
+    while (last < candidate) {
+      add();
+    }
+    if (last==candidate) {
+      return true;
+    }
+    return binary_search(primes.begin(), primes.end(), candidate);
   }
 
  private:

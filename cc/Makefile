@@ -7,6 +7,7 @@ CPPFLAGS = -Wall -O3
 .c.o :
 	$(CPP) $(CPPFLAGS) -c $<
 
+bigmath_test: bigmath_test.cc bigmath.h
 002: 002.cc fib.h
 003: 003.cc primes1.h
 005: 005.cc primes1.h
@@ -16,4 +17,5 @@ CPPFLAGS = -Wall -O3
 020: 020.cc bigmath.h
 021: 021.cc primes1.h
 023: 023.cc primes1.h
-bigmath_test: bigmath_test.cc bigmath.h
+025: 025.cc bigmath.h
+027: 027.cc primes1.h

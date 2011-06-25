@@ -4,7 +4,7 @@
 // digits?
 
 #include <cstdio>
-#include "math.h"
+#include <cmath>
 #include "bigmath.h"
 
 int main(int argc, const char* argv[]) {

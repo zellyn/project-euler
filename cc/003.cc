@@ -4,7 +4,7 @@
 
 #include "primes1.h"
 #include <cstdio>
-#include <math.h>
+#include <cmath>
 
 int main(int argc, const char* argv[]) {
   long product = 600851475143;

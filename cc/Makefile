@@ -7,6 +7,9 @@ CPPFLAGS = -Wall -O3
 .c.o :
 	$(CPP) $(CPPFLAGS) -c $<
 
+clean :
+	rm -f [0-9][0-9][0-9] *~
+
 bigmath_test: bigmath_test.cc bigmath.h
 002: 002.cc fib.h
 003: 003.cc primes1.h

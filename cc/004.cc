@@ -14,7 +14,7 @@ int palindrome(int n) {
   return (sum == n);
 }
 
-int main(char argv[]) {
+int main(int argc, const char* argv[]) {
   int max = 0;
   for (int i = 999; i > 99; i--) {
     if (999 * i <= max) {

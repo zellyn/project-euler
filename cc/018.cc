@@ -32,7 +32,7 @@ int max(int a, int b) {
   return (a>b) ? a : b;
 }
 
-int main(char argv[]) {
+int main(int argc, const char* argv[]) {
   int maxes[SIZE+1] = { 0 };
   for (int row=SIZE-1; row>=0; row--) {
     for (int col=0; col <= row; col++) {

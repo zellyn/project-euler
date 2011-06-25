@@ -5,7 +5,7 @@
 
 #include <cstdio>
 
-int main(char argv[]) {
+int main(int argc, const char* argv[]) {
   int answer = 0;
   for (int a = 1; a < 334; a++) {
     for (int b = a; b < 1000-2*a; b++) {

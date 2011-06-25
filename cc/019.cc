@@ -12,7 +12,7 @@ int dow(int y, int m, int d) {
   return (y + y/4 - y/100 + y/400 + t[m-1] + d) % 7;
 }
 
-int main(char argv[]) {
+int main(int argc, const char* argv[]) {
   int count = 0;
   for (int y = 1901; y < 2001; y++) {
     for (int m = 1; m<=12; m++) {

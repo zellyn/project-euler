@@ -5,7 +5,7 @@
 
 #include <cstdio>
 
-int main(char argv[]) {
+int main(int argc, const char* argv[]) {
   long sum_of_squares = 0;
   long sum = 0;
   for (long i=1; i<=100; i++) {

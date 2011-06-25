@@ -104,7 +104,7 @@ void test_mul() {
   assert (h==i);
 }
 
-int main(char* argv[]) {
+int main(int argc, const char* argv[]) {
   test_add_int();
   test_add();
   test_cmp();

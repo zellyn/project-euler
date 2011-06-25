@@ -5,7 +5,7 @@
 
 #include <cstdio>
 
-int main(char argv[]) {
+int main(int argc, const char* argv[]) {
   int total = 0;
   for (int i = 0; i < 1000; i++) {
     if ((i % 3) * (i % 5) == 0) {

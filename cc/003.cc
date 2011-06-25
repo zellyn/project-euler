@@ -6,7 +6,7 @@
 #include <cstdio>
 #include <math.h>
 
-int main(char argv[]) {
+int main(int argc, const char* argv[]) {
   long product = 600851475143;
   Primes1<long> primes;
   long limit = sqrt(product);

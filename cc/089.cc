@@ -4,6 +4,6 @@
 
 #include <cstdio>
 
-int main(char argv[]) {
+int main(int argc, const char* argv[]) {
   printf("%d\n", 0);
 }

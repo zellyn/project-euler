@@ -5,7 +5,7 @@
 
 #include <cstdio>
 
-int main(char argv[]) {
+int main(int argc, const char* argv[]) {
   // 40! / 20! / 20!  - 20! drops out 20 and below from numerator
   // = 40*39*...*21 / 20!  - 20-10! half-drops out even-numbered 40-22.
   // = 2*39*2*37*2*35*...*2*21 / 10!

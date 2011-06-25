@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int main(char argv[]) {
+int main(int argc, const char* argv[]) {
   Primes1<int> primes;
   int sum = 0;
   for (int i=2; i < 10000; i++) {

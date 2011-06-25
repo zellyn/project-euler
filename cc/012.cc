@@ -10,7 +10,7 @@ long int tri(long int n) {
   return n * (n+1) / 2;
 }
 
-int main(char argv[]) {
+int main(int argc, const char* argv[]) {
   Primes1<long int> primes;
   long int i = 0;
   long int t = 0;

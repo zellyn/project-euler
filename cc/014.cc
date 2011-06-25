@@ -6,7 +6,9 @@
 #include <cstdio>
 #include <map>
 
-int len(long int n, std::map<long int, int>& m) {
+using namespace std;
+
+int len(long int n, map<long int, int>& m) {
   if (m.count(n)) {
     return m[n];
   }
@@ -24,7 +26,7 @@ int len(long int n, std::map<long int, int>& m) {
 int main(char argv[]) {
   int max = 0;
   int nmax = 0;
-  std::map<long int, int> m;
+  map<long int, int> m;
   m[1] = 1;
   // Best guesses are 3, 7, 11, ...
   for (long int i = 3; i < 1e6; i+=4) {

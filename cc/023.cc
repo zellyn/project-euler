@@ -22,7 +22,7 @@ vector<int> abundants(Primes1<int>& primes) {
   return v;
 }
 
-int main(char argv[]) {
+int main(int argc, const char* argv[]) {
   Primes1<int> primes;
   vector<int> ab = abundants(primes);
   bitset<LIMIT+1> bits;

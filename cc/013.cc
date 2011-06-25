@@ -6,6 +6,8 @@
 #include <cstdio>
 #include <string>
 
+using namespace std;
+
 const char* NUMBERS[100] = {
   "37107287533902102798797998220837590246510135740250",
   "46376937677490009712648124896970078050417018260538",
@@ -109,12 +111,12 @@ const char* NUMBERS[100] = {
   "53503534226472524250874054075591789781264330331690",
 };
 
-std::string add(const std::string& s1, const std::string& s2) {
+string add(const string& s1, const string& s2) {
   size_t l1 = s1.length();
   size_t l2 = s2.length();
   size_t max = ((l1 > l2) ? l1 : l2) + 1;
   int carry = 0;
-  std::string ret("");
+  string ret("");
 
   size_t index = 0;
   while (true) {
@@ -130,10 +132,10 @@ std::string add(const std::string& s1, const std::string& s2) {
   }
 }
 
-int main(char argv[]) {
-  std::string sum = std::string(NUMBERS[0]);
+int main(int argc, const char* argv[]) {
+  string sum = string(NUMBERS[0]);
   for (int i=1; i<100; i++) {
-    sum = add(sum, std::string(NUMBERS[i]));
+    sum = add(sum, string(NUMBERS[i]));
   }
   printf("%s\n", sum.substr(0, 10).c_str());
 }

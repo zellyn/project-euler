@@ -58,7 +58,7 @@ int length(int n) {
   return LENGTHS_TENS[n/10] + LENGTHS_ONES[n%10];
 }
 
-int main(char argv[]) {
+int main(int argc, const char* argv[]) {
   int sum = 0;
   for (int i = 1; i<=1000; i++) {
     sum += length(i);

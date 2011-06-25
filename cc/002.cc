@@ -6,7 +6,7 @@
 #include "fib.h"
 #include <cstdio>
 
-int main(char argv[]) {
+int main(int argc, const char* argv[]) {
   Fib<int> fib;
   int total = 0;
   int f = fib.next();

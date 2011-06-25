@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int main(char argv[]) {
+int main(int argc, const char* argv[]) {
   // 2 ^ 1000
   // 4 ^ 500
   // 16 ^ 250

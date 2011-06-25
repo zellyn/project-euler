@@ -23,7 +23,7 @@ int repeat_length(int i) {
   }
 }
 
-int main(char argv[]) {
+int main(int argc, const char* argv[]) {
   int max = 0;
   int maxlen = 0;
   for (int i=2; i<1000; i++) {

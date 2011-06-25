@@ -39,7 +39,7 @@ int score(string s) {
   return sum;
 }
 
-int main(char argv[]) {
+int main(int argc, const char* argv[]) {
   vector<string> names = get_names("../data/p022_names.txt");
   sort(names.begin(), names.end());
 

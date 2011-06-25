@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int main(char argv[]) {
+int main(int argc, const char* argv[]) {
   vector<int> digits;
   digits.push_back(1);
 

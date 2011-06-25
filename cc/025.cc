@@ -7,7 +7,7 @@
 #include "math.h"
 #include "bigmath.h"
 
-int main(char argv[]) {
+int main(int argc, const char* argv[]) {
   BigUnsigned target(1);
   for (int i=1000; i > 1; i--) {
     target *= 10;

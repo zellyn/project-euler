@@ -5,7 +5,7 @@
 #include <cstdio>
 #include "primes1.h"
 
-int main(char argv[]) {
+int main(int argc, const char* argv[]) {
   Primes1<long> primes;
   long sum = 0;
   long p;

@@ -38,7 +38,7 @@ void update(int& max, int row, int col, int rowd, int cold) {
   }
 }
 
-int main(char argv[]) {
+int main(int argc, const char* argv[]) {
   int max = 0;
   for (int row=0; row<20; row++) {
     for (int col=0; col<20; col++) {

@@ -18,6 +18,7 @@ bigmath_test: bigmath_test.cc bigmath.h
 025: 025.cc bigmath.h
 027: 027.cc primes1.h
 029: 029.cc primes1.h
+032: 032.cc mymath.h
 033: 033.cc mymath.h
 035: 035.cc primes1.h
 037: 037.cc primes1.h

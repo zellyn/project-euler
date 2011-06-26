@@ -25,4 +25,19 @@ T gcd(T a, T b) {
   return gcd(b, a % b);
 }
 
+// Return a bitmask of the digits present in a.
+// Repeated digits = turn them all on!
+int digits(int a) {
+  int result = 0;
+  for (int i=a; i; i/=10) {
+    int bit = (1<<(i%10));
+    if (bit & result) {
+      return 0x3ff;
+    } else {
+      result |= bit;
+    }
+  }
+  return result;
+}
+
 #endif  // MYMATH_H

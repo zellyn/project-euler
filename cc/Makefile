@@ -1,11 +1,6 @@
 CPP = g++
 OFLAG = -o
 CPPFLAGS = -Wall -O3
-.SUFFIXES : .o .cpp .c
-.cpp.o :
-	$(CPP) $(CPPFLAGS) -c $<
-.c.o :
-	$(CPP) $(CPPFLAGS) -c $<
 
 clean :
 	rm -f [0-9][0-9][0-9] *~
@@ -24,3 +19,4 @@ bigmath_test: bigmath_test.cc bigmath.h
 027: 027.cc primes1.h
 029: 029.cc primes1.h
 033: 033.cc mymath.h
+035: 035.cc primes1.h

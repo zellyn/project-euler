@@ -40,4 +40,23 @@ int digits(int a) {
   return result;
 }
 
+// Return a bitmask of the digits present in a. Assume a is w digits
+// wide.
+// Repeated digits = return -1
+int digits(int a, int w) {
+  int result = 0;
+  int i = a;
+  while (w) {
+    int bit = (1<<(i%10));
+    if (bit & result) {
+      return -1;
+    } else {
+      result |= bit;
+    }
+    i /= 10;
+    w--;
+  }
+  return result;
+}
+
 #endif  // MYMATH_H

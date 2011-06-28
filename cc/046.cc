@@ -4,7 +4,22 @@
 // sum of a prime and twice a square?
 
 #include <cstdio>
+#include "primes1.h"
 
 int main(int argc, const char* argv[]) {
-  printf("%d\n", 0);
+  Primes1<int> primes;
+  int i = 33;
+  bool done = false;
+  while (!done) {
+    i += 2;
+    if (primes.is_prime(i)) continue;
+    done = true;
+    for (int s = 1; 2*s*s<i; s++) {
+      if (primes.is_prime(i-2*s*s)) {
+        done = false;
+        break;
+      }
+    }
+  }
+  printf("%d\n", i);
 }

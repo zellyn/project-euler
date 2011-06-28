@@ -22,6 +22,36 @@ void times_digits_reversed(vector<int>& digits, int plier) {
   }
 }
 
+void addto_digits_reversed(vector<int>& target, vector<int>& add) {
+  int carry = 0;
+  vector<int>::iterator i, j;
+  for (i=target.begin(), j=add.begin(); i!=target.end() && j!=add.end(); ++i,++j) {
+    carry += *i;
+    carry += *j;
+    *i = carry % 10;
+    carry /= 10;
+  }
+
+  while (i!=target.end()) {
+    carry += *i;
+    *i = carry % 10;
+    carry /= 10;
+    ++i;
+  }
+
+  while (j!=add.end()) {
+    carry += *j;
+    target.push_back(carry % 10);
+    carry /= 10;
+    ++j;
+  }
+
+  if (carry) {
+    assert (carry <= 9);
+    target.push_back(carry);
+  }
+}
+
 int sum_digits(vector<int>& digits) {
   int sum = 0;
   for (size_t i=0; i<digits.size(); i++) {

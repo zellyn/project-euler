@@ -25,8 +25,10 @@ int main(int argc, const char* argv[]) {
   Primes1<int> primes;
   int max = 0;
   int p;
+  while (primes.next() < 2143)
+    ;
   while ((p=primes.next()) < 1e7) {
-    if (p > 2143 && check(p)) {  // 2143 given in problem
+    if (check(p)) {  // 2143 given in problem
       max = p;
     }
   }

@@ -29,3 +29,4 @@ bigmath_test: bigmath_test.cc bigmath.h
 047: 047.cc primes1.h
 048: 048.cc bigmath.h
 049: 049.cc primes1.h
+050: 050.cc primes1.h

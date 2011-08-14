@@ -1,10 +1,9 @@
 #! /usr/bin/bash
 
-tests='bigmath_test'
+tests='bigmath_test factored_test'
 echo "Building............................."
 
-make $tests 00{1..9} 0{10..90} > /dev/null
-[[ "$?" != "0" ]] && exit
+make all || exit
 
 echo "Testing.............................."
 

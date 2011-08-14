@@ -1,3 +1,5 @@
+#include <cassert>
+
 #include "bigmath.h"
 #include "limits.h"
 

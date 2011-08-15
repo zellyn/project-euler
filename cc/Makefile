@@ -19,6 +19,7 @@ clean :
 	-rm [0-9][0-9][0-9] *~ *.o
 
 bigmath_test : bigmath_test.cc bigmath.h
+myutil.o : myutil.h
 factored.o : factored.h primes1.h
 factored_test : factored_test.cc factored.o
 
@@ -30,7 +31,7 @@ factored_test : factored_test.cc factored.o
 016 : bigmath.h
 020 : bigmath.h
 021 : primes1.h
-022 : myutil.h
+022 : myutil.o
 023 : primes1.h
 025 : bigmath.h
 027 : primes1.h
@@ -40,7 +41,7 @@ factored_test : factored_test.cc factored.o
 035 : primes1.h
 037 : primes1.h
 041 : mymath.h primes1.h
-042 : myutil.h
+042 : myutil.o
 046 : primes1.h
 047 : primes1.h
 048 : bigmath.h

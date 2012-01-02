@@ -6,6 +6,22 @@
 
 using namespace std;
 
+/* Read lines from a file */
+vector<string> read_lines(const char* filename) {
+  vector<string> retval;
+  string line;
+  ifstream myfile;
+  myfile.open(filename);
+  while (!myfile.eof()) {
+    getline(myfile, line);
+    if (line.length()) {
+      retval.push_back(string(line));
+    }
+  }
+  myfile.close();
+  return retval;
+}
+
 /* Read a file of "WORD1","WORD2","WORD3",...,"WORDN" */
 vector<string> get_quoted_csv(const char* filename) {
   string line;

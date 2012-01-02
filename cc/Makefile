@@ -49,3 +49,4 @@ factored_test : factored_test.cc factored.o
 050 : primes1.h
 051 : primes1.h
 053 : primes1.h factored.o
+054 : myutil.o

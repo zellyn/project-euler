@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#! /usr/bin/env bash
 
 tests='bigmath_test factored_test'
 echo "Building............................."

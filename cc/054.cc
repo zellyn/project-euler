@@ -5,8 +5,8 @@
 #include <algorithm>
 #include <cstdio>
 #include <iostream>
+#include <map>
 #include <set>
-#include <sstream>
 #include <string>
 #include <vector>
 
@@ -21,8 +21,8 @@ struct Card {
 };
 
 const string CARD_VALUES = "23456789TJQKA";
-const size_t CARD_COUNTS_LEN = 15;
 
+// Order stacks of same-valued cards by size, then by value
 bool comp(vector<Card> a, vector<Card> b) {
   if (a.size() != b.size()) {
     return a.size() > b.size();
@@ -32,27 +32,21 @@ bool comp(vector<Card> a, vector<Card> b) {
 
 class Hand {
 public:
-  Hand() {
-    for (size_t i = 0; i < CARD_COUNTS_LEN; ++i) {
-      counts_[i] = 0;
-    }
-  };
+  Hand() { };
 
-  void Add(const Card& card) {
+  void Add(const string& cardStr) {
+    Card card = {CARD_VALUES.find(cardStr[0]) + 2, cardStr[1], cardStr};
     // Add to counts
     counts_[card.value]++;
     counts_[1] = counts_[14];  // Aces
 
-    // Add to cards_
-    InsertDescending(cards_, card);
-
     // Add to suits_
     suits_.insert(card.suit);
 
-    // Add to by_value_
+    // Add to value_stacks_
     vector<vector<Card> >::iterator it2;
     bool inserted = false;
-    for (it2=by_value_.begin(); it2<by_value_.end(); ++it2) {
+    for (it2=value_stacks_.begin(); it2<value_stacks_.end(); ++it2) {
       if ((*it2)[0].value == card.value) {
 	it2->push_back(card);
 	inserted = true;
@@ -62,95 +56,52 @@ public:
     if (!inserted) {
       vector<Card> cards;
       cards.push_back(card);
-      by_value_.push_back(cards);
+      value_stacks_.push_back(cards);
     }
-    sort(by_value_.begin(), by_value_.end(), comp);
-  }
-
-  void Add(const string& card_str) {
-    Card card = {CARD_VALUES.find(card_str[0]) + 2, card_str[1], card_str};
-    Add(card);
+    sort(value_stacks_.begin(), value_stacks_.end(), comp);
   }
 
   float Score() {
+    // Compute counts summary
     int summary = ValueSummary();
+    // Compute score from counts
+    float stackScore = 0.0;
+    vector<vector<Card> >::const_reverse_iterator rit;
+    for (rit=value_stacks_.rbegin(); rit!=value_stacks_.rend(); ++rit) {
+      stackScore = (stackScore + (*rit)[0].value) / 15.0;
+    }
+
     float score;
     // Royal Flush
-    score = RoyalFlush();
-    if (score > 0.0) return 9.0 + score;
+    if ((score = RoyalFlush()) > 0.0) return 9.0 + score;
     // Straight Flush
-    score = StraightFlush();
-    if (score > 0.0) return 8.0 + score;
+    if ((score = StraightFlush()) > 0.0) return 8.0 + score;
     // Four of a kind
-    if (summary == 41) {
-      return 7.0 + ScoreFrom(by_value_);
-    }
+    if (summary == 41) return 7.0 + stackScore;
     // Full house
-    if (summary == 32) {
-      return 6.0 + ScoreFrom(by_value_);
-    }
+    if (summary == 32) return 6.0 + stackScore;
     // Flush
-    score = Flush();
-    if (score > 0.0) return 5.0 + score;
+    if (suits_.size() == 1) return 5.0 + stackScore;
     // Straight
-    score = Straight();
-    if (score > 0.0) return 4.0 + score;
+    if ((score = Straight()) > 0.0) return 4.0 + score;
     // Three of a kind
-    if (summary == 311) {
-      return 3.0 + ScoreFrom(by_value_);
-    }
+    if (summary == 311) return 3.0 + stackScore;
     // Two pairs
-    if (summary == 221) {
-      return 2.0 + ScoreFrom(by_value_);
-    }
+    if (summary == 221) return 2.0 + stackScore;
     // One pair
-    if (summary == 2111) {
-      return 1.0 + ScoreFrom(by_value_);
-    }
+    if (summary == 2111) return 1.0 + stackScore;
     // High card
-    return ScoreFrom(by_value_);
-  }
-
-  string String() {
-    stringstream ss(stringstream::in | stringstream::out);
-    for (vector<Card>::iterator it=cards_.begin(); it!=cards_.end(); ++it) {
-      ss << it->name << ' ';
-    }
-    ss << "- " << Score();
-    return ss.str(); 
+    return stackScore;
   }
 
 private:
   int ValueSummary() {
     int summary = 0;
     vector<vector<Card> >::const_iterator it;
-    for (it=by_value_.begin(); it!=by_value_.end(); ++it) {
+    for (it=value_stacks_.begin(); it!=value_stacks_.end(); ++it) {
       summary = summary * 10 + it->size();
     }
     return summary;
-  }
-
-  void InsertDescending(vector<Card>& cards, const Card& card) {
-    // Insert into cards
-    vector<Card>::iterator it1;
-    for (it1=cards.begin(); it1<cards.end(); ++it1) {
-      if (it1->value <= card.value)
-	break;
-    }
-    cards.insert(it1, card);
-  }
-
-  float ScoreFrom(const vector<vector<Card > >& stacks) {
-    float score = 0.0;
-    vector<vector<Card> >::const_reverse_iterator rit;
-    for (rit=stacks.rbegin(); rit!=stacks.rend(); ++rit) {
-      score = (score + (*rit)[0].value) / 15.0;
-    }
-    return score;
-  }
-
-  bool IsFlush() {
-    return suits_.size() == 1;
   }
 
   float RoyalFlush() {
@@ -160,20 +111,13 @@ private:
   }
 
   float StraightFlush() {
-    if (!IsFlush()) return 0.0;
+    if (suits_.size() != 1) return 0.0;
     return Straight();
-  }
-
-  float Flush() {
-    if (suits_.size() > 1) {
-      return 0.0;
-    }
-    return ScoreFrom(by_value_);
   }
 
   float Straight() {
     int inarow = 0;
-    for (size_t i=0; i<CARD_COUNTS_LEN; ++i) {
+    for (int i=1; i<=14; ++i) {
       if (counts_[i] == 1) {
 	inarow++;
 	if (inarow==5) {
@@ -187,19 +131,10 @@ private:
   }
 
 private:
-  vector<Card> cards_;
   set<char> suits_;
-  vector<vector<Card> > by_value_;
-  int counts_[CARD_COUNTS_LEN];
+  vector<vector<Card> > value_stacks_;
+  map<int, int> counts_;
 };
-
-bool compare_values(const Card& card1, const Card& card2) {
-  return card1.value > card2.value;
-}
-
-bool compare_suits(const Card& card1, const Card& card2) {
-  return card1.suit < card2.suit;
-}
 
 vector<pair<Hand, Hand> > read_hands(const char* filename) {
   vector<pair<Hand, Hand> > retval;

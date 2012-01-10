@@ -51,3 +51,4 @@ factored_test : factored_test.cc factored.o
 053 : primes1.h factored.o
 054 : myutil.o
 055 : bigmath.h
+056 : bigmath.h

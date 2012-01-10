@@ -11,13 +11,10 @@
 int main(int argc, const char* argv[]) {
   int max = 0;
   for (int a=1; a < 100; a++) {
-    vector<int> vec;
-    vec.push_back(1);
-    times_digits_reversed(vec, a);
     for (int b=1; b < 100; b++) {
-      vector<int> vec2 = vec;
-      pow_digits_reversed(vec2, b);
-      int sum = sum_digits(vec2);
+      Bignum10 bigA(a);
+      bigA.Pow(b);
+      int sum = bigA.DigitSum();
       if (sum > max) max = sum;
     }
   }

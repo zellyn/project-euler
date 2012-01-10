@@ -9,22 +9,16 @@
 using namespace std;
 
 int main(int argc, const char* argv[]) {
-  vector<int> sum;
-  sum.push_back(0);
+  Bignum10 sum(0);
 
   for (int i = 1; i <= 1000; i++) {
-    vector<int> add;
-    add.push_back(1);
+    Bignum10 add(1);
     for (int j=0; j<i; j++) {
-      times_digits_reversed(add, i);
-      add.resize(10);
+      add *= i;
+      add.Resize(10);
     }
-    addto_digits_reversed(sum, add);
-    sum.resize(10);
+    sum += add;
+    sum.Resize(10);
   }
-  long answer = 0;
-  for (int i=9; i>=0; i--) {
-    answer = answer * 10 + sum[i];
-  }
-  printf("%ld\n", answer);
+  sum.Print();
 }

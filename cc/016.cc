@@ -13,11 +13,10 @@ int main(int argc, const char* argv[]) {
   // 4 ^ 500
   // 16 ^ 250
   // 256 ^ 125;
-  vector<int> digits;
-  digits.push_back(1);
+  Bignum10 a(1);
 
   for (int i=0; i<125; i++) {
-    times_digits_reversed(digits, 256);
+    a *= 256;
   }
-  printf("%d\n", sum_digits(digits));
+  printf("%d\n", a.DigitSum());
 }

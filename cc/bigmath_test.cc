@@ -106,48 +106,33 @@ void test_mul() {
   assert (h==i);
 }
 
-void test_mul_digits_reversed() {
-  vector<int> a;
-  vector<int> b;
-  a.push_back(1);
-  for (int i = 0; i<100; i++) {
+void test_mul_bignum10() {
+  Bignum10 a(1);
+  Bignum10 b;
+  for (int i=0; i<100; i++) {
     if (i==50) b = a;
-    times_digits_reversed(a, 13);
+    a *= 13;
   }
-  vector<int> c = b;
-  times_digits_reversed(b, c);
-  assert (a.size() == b.size());
-  for (size_t i=0; i <= a.size(); i++) {
-    assert (a[i] == b[i]);
-  }
+  Bignum10 c = b;
+  b *= c;
+  assert (a==b);
 }
 
-void test_pow_digits_reversed_simple() {
-  vector<int> c;
-  c.push_back(1);
-  times_digits_reversed(c, 17);
-  pow_digits_reversed(c, 3);
-  // 4913
-  assert (c.size() == 4);
-  assert (c[0] == 3);
-  assert (c[1] == 1);
-  assert (c[2] == 9);
-  assert (c[3] == 4);
+void test_pow_bignum10_simple() {
+  Bignum10 a(17);
+  a.Pow(3);
+  Bignum10 b(4913);
+  assert (a == b);
 }
 
-void test_pow_digits_reversed() {
-  vector<int> a;
-  a.push_back(1);
+void test_pow_bignum10() {
+  Bignum10 a(1);
   for (int i = 0; i<100; i++) {
-    times_digits_reversed(a, 13);
+    a *= 13;
   }
-  vector<int> b;
-  b.push_back(13);
-  pow_digits_reversed(b, 100);
-  assert (a.size() == b.size());
-  for (size_t i=0; i < a.size(); i++) {
-    assert (a[i] == b[i]);
-  }
+  Bignum10 b(13);
+  b.Pow(100);
+  assert (a==b);
 }
 
 int main(int argc, const char* argv[]) {
@@ -155,7 +140,7 @@ int main(int argc, const char* argv[]) {
   test_add();
   test_cmp();
   test_mul();
-  test_mul_digits_reversed();
-  test_pow_digits_reversed_simple();
-  test_pow_digits_reversed();
+  test_mul_bignum10();
+  test_pow_bignum10_simple();
+  test_pow_bignum10();
 }

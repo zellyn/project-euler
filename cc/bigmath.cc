@@ -1,121 +1,201 @@
 #include "bigmath.h"
 
 #include "limits.h"
+#include <algorithm>
 #include <cassert>
 #include <iostream>
 #include <vector>
 
 using namespace std;
 
-void print_digits(vector<int>& digits) {
-  for (vector<int>::reverse_iterator it=digits.rbegin(); it != digits.rend(); ++it) {
+Bignum10 Bignum10::Reversed() {
+  Bignum10 retval;
+  retval.v = v;
+  reverse(retval.v.begin(), retval.v.end());
+  while ((retval.v.size() > 1) && !retval.v.back()) {
+    retval.v.pop_back();
+  }
+  return retval;
+}
+
+bool Bignum10::IsPalindrome() {
+  if (v.size() == 1) return true;
+  size_t l = v.size() / 2;
+  vector<int>::const_iterator it;
+  vector<int>::const_reverse_iterator rit;
+  for (it=v.begin(), rit=v.rbegin(); (it != v.end()) && (rit != v.rend()) && l; ++it, ++rit, --l) {
+    if (*it != *rit) return false;
+  }
+  return true;
+}
+
+void Bignum10::Print() {
+  for (vector<int>::reverse_iterator it=v.rbegin(); it != v.rend(); ++it) {
     cout << *it;
   }
   cout << endl;
 }
 
-void addto_digits_reversed(vector<int>& target, vector<int>& add) {
+Bignum10::Bignum10&
+Bignum10::operator+=(Bignum10 rhs) {
   int carry = 0;
   vector<int>::iterator i, j;
-  for (i=target.begin(), j=add.begin(); i!=target.end() && j!=add.end(); ++i,++j) {
+  for (i=v.begin(), j=rhs.v.begin(); i!=v.end() && j!=rhs.v.end(); ++i,++j) {
     carry += *i;
     carry += *j;
     *i = carry % 10;
     carry /= 10;
   }
 
-  while (i!=target.end()) {
+  while (i!=v.end()) {
     carry += *i;
     *i = carry % 10;
     carry /= 10;
     ++i;
   }
 
-  while (j!=add.end()) {
+  while (j!=rhs.v.end()) {
     carry += *j;
-    target.push_back(carry % 10);
+    v.push_back(carry % 10);
     carry /= 10;
     ++j;
   }
 
   if (carry) {
     assert (carry <= 9);
-    target.push_back(carry);
+    v.push_back(carry);
   }
+  return *this;
 }
 
-// Multiply a bigint by an int, in-place.
-// v holds the bigint, one digit per entry, with the least-significant
-// digit first.
-void times_digits_reversed(vector<int>& digits, int plier) {
+Bignum10::Bignum10&
+Bignum10::operator*=(const unsigned int& rhs) {
+  // Multiply by zero is easy
+  if (rhs==0) {
+    v.clear();
+    v.push_back(0);
+    return *this;
+  }
+  // Multiply by ten is easy
+  if (rhs==10) {
+    v.insert(v.begin(), 0);
+    return *this;
+  }
+
   int carry = 0;
-  for (size_t i=0; i<digits.size(); i++) {
-    int prod = digits[i] * plier + carry;
-    digits[i] = prod % 10;
+  for (size_t i=0; i<v.size(); i++) {
+    int prod = v[i] * rhs + carry;
+    v[i] = prod % 10;
     carry = prod / 10;
   }
   while (carry) {
-    digits.push_back(carry % 10);
+    v.push_back(carry % 10);
     carry /= 10;
   }
+  return *this;
 }
 
-// Multiply a bigint by a bigint, in-place.
-// digits holds the bigint, one digit per entry, with the
-// least-significant digit first, and the result.
-void times_digits_reversed(vector<int>& digits, vector<int> plier) {
-  vector<int> digits_copy = digits;
-  digits.clear();
+Bignum10::Bignum10&
+Bignum10::operator*=(Bignum10 rhs) {
+  Bignum10 v_copy = *this;
+  this->Init(0);
   int shift = 0;
-  while (plier.size()) {
+  while (rhs.NonZero()) {
     // shift over
     for (int i=0; i<shift; i++) {
-      digits_copy.insert(digits_copy.begin(), 0);
+      v_copy *= 10;
     }
     shift = 0;
-    vector<int> digits_again = digits_copy;
+    Bignum10 v_again = v_copy;
 
     // Grab up to five digits of the multiplier
     int power = 1;
     int multiplier = 0;
     for (int i=0; i<5; i++) {
-      if (!plier.size()) break;
-      multiplier+= power * plier[0];
-      plier.erase(plier.begin());
+      if (!rhs.NonZero()) break;
+      multiplier += power * rhs[0];
+      rhs.Div10();
       power *= 10;
       shift++;
     }
 
     if (multiplier) {
       // Multiply
-      times_digits_reversed(digits_again, multiplier);
+      v_again *= multiplier;
 
       // Add to result
-      addto_digits_reversed(digits, digits_again);
+      *this += v_again;
     }
+  }
+    return *this;
+}
+
+void Bignum10::Pow(unsigned int rhs) {
+  Bignum10 copy = *this;
+  this->Init(1);
+  while (rhs) {
+    if (rhs & 1) {
+      *this *= copy;
+    }
+    rhs >>= 1;
+    copy *= copy;
   }
 }
 
-void pow_digits_reversed(vector<int>& digits, int power) {
-  vector<int> digits_copy = digits;
-  digits.clear();
-  digits.push_back(1);
-  while (power) {
-    if (power & 1) {
-      times_digits_reversed(digits, digits_copy);
-    }
-    power >>= 1;
-    vector<int> plier = digits_copy;
-    times_digits_reversed(digits_copy, plier);
-  }
-}
-
-int sum_digits(vector<int>& digits) {
+int Bignum10::DigitSum() {
   int sum = 0;
-  for (size_t i=0; i<digits.size(); i++) {
-    sum += digits[i];
+  for (size_t i=0; i<v.size(); i++) {
+    sum += v[i];
   }
   return sum;
+}
+
+bool
+Bignum10::operator==(const Bignum10& rhs) {
+  return cmp(rhs) == 0;
+}
+
+bool
+Bignum10::operator<(const Bignum10& rhs) {
+  return cmp(rhs) < 0;
+}
+
+bool
+Bignum10::operator<=(const Bignum10& rhs) {
+  return cmp(rhs) <= 0;
+}
+
+bool
+Bignum10::operator>(const Bignum10& rhs) {
+  return cmp(rhs) > 0;
+}
+
+bool
+Bignum10::operator>=(const Bignum10& rhs) {
+  return cmp(rhs) >= 0;
+}
+
+int Bignum10::cmp(const Bignum10& rhs) {
+  size_t s1 = v.size();
+  size_t s2 = rhs.v.size();
+  if (s1 > s2) {
+    return 1;
+  }
+  if (s1 < s2) {
+    return -1;
+  }
+
+  vector<int>::reverse_iterator i = v.rbegin();
+  vector<int>::const_reverse_iterator j = rhs.v.rbegin();
+  do {
+    if (*i > *j) {
+      return 1;
+    } else if (*i < *j) {
+      return -1;
+    }
+    ++i; ++j;
+  } while (i != v.rend());
+  return 0;
 }
 
 void BigUnsigned:: print() {

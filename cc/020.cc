@@ -9,11 +9,10 @@
 using namespace std;
 
 int main(int argc, const char* argv[]) {
-  vector<int> digits;
-  digits.push_back(1);
+  Bignum10 a(1);
 
   for (int i=2; i<=100; i++) {
-    times_digits_reversed(digits, i);
+    a *= i;
   }
-  printf("%d\n", sum_digits(digits));
+  printf("%d\n", a.DigitSum());
 }

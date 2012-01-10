@@ -18,7 +18,8 @@ all : 001 002 003 004 005 006 007 008 009 010 \
 clean :
 	-rm [0-9][0-9][0-9] *~ *.o
 
-bigmath_test : bigmath_test.cc bigmath.h
+bigmath_test : bigmath_test.cc bigmath.o
+bigmath.o : bigmath.h
 myutil.o : myutil.h
 factored.o : factored.h primes1.h
 factored_test : factored_test.cc factored.o
@@ -28,12 +29,12 @@ factored_test : factored_test.cc factored.o
 005 : primes1.h
 007 : primes1.h
 010 : primes1.h
-016 : bigmath.h
-020 : bigmath.h
+016 : bigmath.o
+020 : bigmath.o
 021 : primes1.h
 022 : myutil.o
 023 : primes1.h
-025 : bigmath.h
+025 : bigmath.o
 027 : primes1.h
 029 : primes1.h
 032 : mymath.h
@@ -44,11 +45,11 @@ factored_test : factored_test.cc factored.o
 042 : myutil.o
 046 : primes1.h
 047 : primes1.h
-048 : bigmath.h
+048 : bigmath.o
 049 : primes1.h
 050 : primes1.h
 051 : primes1.h
 053 : primes1.h factored.o
 054 : myutil.o
-055 : bigmath.h
-056 : bigmath.h
+055 : bigmath.o
+056 : bigmath.o

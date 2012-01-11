@@ -35,6 +35,9 @@ class Bignum10 {
   void Print();
   void Pow(unsigned int rhs);
   int DigitSum();
+  int size() {
+    return v.size();
+  }
   bool IsPalindrome();
   Bignum10 Reversed();
 

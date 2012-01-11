@@ -53,3 +53,4 @@ factored_test : factored_test.cc factored.o
 054 : myutil.o
 055 : bigmath.o
 056 : bigmath.o
+057 : bigmath.o

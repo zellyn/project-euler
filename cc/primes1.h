@@ -102,6 +102,20 @@ class Primes1 {
     return binary_search(primes.begin(), primes.end(), candidate);
   }
 
+  bool lazy_is_prime(T candidate) {
+    if (last >= candidate) return is_prime(candidate);
+    T s = sqrt(candidate);
+    while (last < s+2) {
+      add();
+    }
+    typename vector<T>::iterator it;
+    for (it = primes.begin(); it != primes.end(); ++it) {
+      if (*it > s) return true;
+      if (candidate % *it == 0) return false;
+    }
+    return false;
+  }
+
  private:
   T add() {
      while (true) {

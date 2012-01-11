@@ -29,6 +29,7 @@ factored_test : factored_test.cc factored.o
 005 : primes1.h
 007 : primes1.h
 010 : primes1.h
+012 : primes1.h
 016 : bigmath.o
 020 : bigmath.o
 021 : primes1.h
@@ -54,3 +55,4 @@ factored_test : factored_test.cc factored.o
 055 : bigmath.o
 056 : bigmath.o
 057 : bigmath.o
+058 : primes1.h

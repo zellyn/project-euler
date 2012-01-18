@@ -42,3 +42,25 @@ vector<string> get_quoted_csv(const char* filename) {
   }
   return retval;
 }
+
+/* Read a file of int1, int2, ..., intN when each is > 0 */
+vector<int> get_csv_ints(const char* filename) {
+  string line;
+  ifstream myfile(filename);
+  if (myfile.is_open()) {
+    getline(myfile, line);
+  }
+  vector<int> retval;
+  line.push_back(',');
+  const char* chars = line.c_str();
+  int val = 0;
+  do {
+    if (*chars >= '0' and *chars <= '9') {
+      val = val * 10 + (*chars - '0');
+    } else if (*chars == ',') {
+      retval.push_back(val);
+      val = 0;
+    }
+  } while (*(++chars));
+  return retval;
+}

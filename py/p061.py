@@ -61,7 +61,6 @@ def pgonal_4_digits(p):
             result.append(n)
 
 def p061():
-    picks = [pgonal_4_digits(p) for p in (3,4,5,6,7,8)]
     success_state = search(success, gen)
     return sum(success_state[0])
 

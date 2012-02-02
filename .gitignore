@@ -4,3 +4,4 @@ cc/[0-9][0-9][0-9]
 cc/bigmath_test
 cc/factored_test
 *.o
+*.6

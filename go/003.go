@@ -4,8 +4,14 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"./primes"
+)
 
 func main() {
-  fmt.Println(0)
+	var product int64 = 600851475143
+	factors := primes.PrimeFactors(product)
+	fmt.Println(factors[len(factors)-1])
 }

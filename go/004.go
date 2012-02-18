@@ -6,6 +6,25 @@ package main
 
 import "fmt"
 
+func isPalindrome(n int) bool {
+	s := fmt.Sprint(n)
+	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
+		if s[i] != s[j] {
+			return false
+		}
+	}
+	return true
+}
+
 func main() {
-	fmt.Println(0)
+	max := 0
+	for i := 101; i <= 999; i++ {
+		for j := i; j <= 999; j++ {
+			s := i * j
+			if isPalindrome(s) && s > max {
+				max = s
+			}
+		}
+	}
+	fmt.Println(max)
 }

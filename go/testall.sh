@@ -2,8 +2,11 @@
 
 # tests='bigmath_test factored_test'
 tests=''
-echo "Building............................."
 
+echo "gofmt................................"
+[ -n "$(gofmt -s -d *.go)" ] && gofmt -s -d *.go && exit
+
+echo "Building............................."
 make all || exit
 
 echo "Testing.............................."

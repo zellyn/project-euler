@@ -30,3 +30,4 @@ clean :
 	6l -o $@ $<
 
 003 : primes.6
+005 : primes.6

@@ -4,8 +4,12 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"./primes"
+)
 
 func main() {
-	fmt.Println(0)
+	fmt.Println(primes.Get(10000))
 }

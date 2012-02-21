@@ -8,5 +8,12 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(0)
+	for a := 1; a < 998; a++ {
+		for b := a + 1; b < 999; b++ {
+			if c := 1000 - a - b; c*c == a*a+b*b {
+				fmt.Println(a * b * c)
+				return
+			}
+		}
+	}
 }

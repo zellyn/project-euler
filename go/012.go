@@ -5,8 +5,22 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"./primes"
+)
 
 func main() {
-	fmt.Println(0)
+	var n, tri int64 = 1, 0
+	for ; ; n, tri = n+1, tri+n {
+		count := 1
+		for _, factor := range primes.PrimeFactors(tri) {
+			count *= (factor.Count + 1)
+		}
+		if count > 500 {
+			fmt.Println(tri)
+			return
+		}
+	}
 }

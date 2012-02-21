@@ -8,5 +8,11 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(0)
+	sum, sumsq := 0, 0
+	for i := 1; i <= 100; i++ {
+		sum += i
+		sumsq += i * i
+	}
+	sq := sum * sum
+	fmt.Println(sq - sumsq)
 }

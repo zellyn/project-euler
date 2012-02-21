@@ -8,6 +8,11 @@ var primes []int64 = []int64{2, 3, 5}
 var last int64 = 5
 var inc int64 = 2
 
+type Factor struct {
+	Prime int64
+	Count int
+}
+
 func add() {
 	for {
 		last += inc
@@ -47,22 +52,24 @@ func IsPrime(candidate int64) bool {
 	return true
 }
 
-func PrimeFactors(product int64) []int64 {
+func PrimeFactors(product int64) []Factor {
 	if IsPrime(product) {
-		return []int64{product}
+		return []Factor{{product, 1}}
 	}
-	var result []int64
+	var result []Factor
 	for _, p := range primes {
 		if product == 1 {
 			return result
 		}
 		if p*p > product {
-			return append(result, product)
+			return append(result, Factor{product, 1})
 		}
+		count := 0
 		for product%p == 0 {
-			result = append(result, p)
+			count++
 			product /= p
 		}
+		result = append(result, Factor{p, count})
 	}
 	return result
 }

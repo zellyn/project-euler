@@ -13,5 +13,5 @@ import (
 func main() {
 	var product int64 = 600851475143
 	factors := primes.PrimeFactors(product)
-	fmt.Println(factors[len(factors)-1])
+	fmt.Println(factors[len(factors)-1].Prime)
 }

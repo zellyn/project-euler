@@ -21,7 +21,7 @@ func main() {
 	for i := 101; i <= 999; i++ {
 		for j := i; j <= 999; j++ {
 			s := i * j
-			if isPalindrome(s) && s > max {
+			if s > max && isPalindrome(s) {
 				max = s
 			}
 		}

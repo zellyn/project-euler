@@ -4,8 +4,17 @@
 
 package main
 
-import "fmt"
+import (
+	"big"
+	"fmt"
+)
 
 func main() {
-	fmt.Println(0)
+	num := big.NewInt(0).Exp(big.NewInt(2), big.NewInt(1000), nil)
+	s := num.String()
+	sum := 0
+	for _, c := range s {
+		sum += c - '0'
+	}
+	fmt.Println(sum)
 }

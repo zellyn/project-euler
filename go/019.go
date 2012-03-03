@@ -8,5 +8,20 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(0)
+	months := [...]int{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
+	sundays := 0
+	day := 366 // Monday is 0, 1900 had 366 days
+	for year := 1901; year < 2001; year++ {
+		isLeap := (year%4 == 0) && ((year%100 != 0) || year%400 == 0)
+		for month := 0; month < 12; month++ {
+			if day%7 == 6 {
+				sundays++
+			}
+			day += months[month]
+			if month == 1 && isLeap {
+				day += 1
+			}
+		}
+	}
+	fmt.Println(sundays)
 }

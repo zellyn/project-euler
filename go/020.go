@@ -4,8 +4,16 @@
 
 package main
 
-import "fmt"
+import (
+	"big"
+	"fmt"
+)
 
 func main() {
-	fmt.Println(0)
+	s := big.NewInt(1).MulRange(2, 100).String()
+	sum := 0
+	for _, c := range s {
+		sum += c - '0'
+	}
+	fmt.Println(sum)
 }

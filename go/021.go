@@ -4,8 +4,19 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"./primes"
+)
 
 func main() {
-	fmt.Println(0)
+	sum := int64(0)
+	for i := int64(2); i < 10000; i++ {
+		sd := primes.SumDivisors(i)
+		if sd > i && primes.SumDivisors(sd) == i {
+			sum += i + sd
+		}
+	}
+	fmt.Println(sum)
 }

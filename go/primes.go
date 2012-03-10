@@ -73,3 +73,16 @@ func PrimeFactors(product int64) []Factor {
 	}
 	return result
 }
+
+func SumDivisors(product int64) int64 {
+	factors := PrimeFactors(product)
+	sum := int64(1)
+	for _, factor := range factors {
+		mult := int64(1)
+		for i, oldsum := 0, sum; i < factor.Count; i++ {
+			mult *= factor.Prime
+			sum += mult * oldsum
+		}
+	}
+	return sum - product
+}

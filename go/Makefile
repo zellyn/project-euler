@@ -33,3 +33,5 @@ clean :
 005 : primes.6
 007 : primes.6
 010 : primes.6
+012 : primes.6
+021 : primes.6

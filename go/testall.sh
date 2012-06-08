@@ -1,23 +1,12 @@
 #! /usr/bin/env bash
 
-# tests='bigmath_test factored_test'
-tests=''
-
 echo "gofmt................................"
 [ -n "$(gofmt -s -d *.go)" ] && gofmt -s -d *.go && exit
 
 echo "Building............................."
-make all || exit
-
-echo "Testing.............................."
-
-for atest in $tests
+for i in ???.go
 do
-    echo -n "$atest:"
-    ./$atest
-    a=$?
-    [[ "$a" == "0" ]] && echo 'passed.' || echo 'failed.'
-    [[ "$a" == "0" ]] || exit
+    go build $i || exit
 done
 
 pairs="001-233168 002-4613732 003-6857 004-906609 005-232792560\

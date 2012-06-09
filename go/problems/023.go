@@ -1,6 +1,7 @@
-// Project Euler Problem 021
+// Project Euler Problem 023
 //
-// Evaluate the sum of all amicable pairs under 10000.
+// Find the sum of all the positive integers which cannot be written
+// as the sum of two abundant numbers.
 
 package problems
 
@@ -11,5 +12,5 @@ func Problem023() string {
 }
 
 func init() {
-     Functions[21] = Problem021
+     Functions[23] = Problem023
 }

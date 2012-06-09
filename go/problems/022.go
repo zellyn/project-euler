@@ -6,49 +6,45 @@
 package problems
 
 import (
-	"bufio"
-	"bytes"
+	"encoding/csv"
 	"fmt"
-	"io"
 	"os"
+	"sort"
 )
 
 // Read a whole file into the memory and store it as array of lines
-func readLines(path string) (lines []string, err error) {
-	var (
-		file   *os.File
-		part   []byte
-		prefix bool
-	)
+func readNames(path string) (names []string, err error) {
+	var file   *os.File
 	if file, err = os.Open(path); err != nil {
 		return
 	}
 	defer file.Close()
 
-	reader := bufio.NewReader(file)
-	buffer := bytes.NewBuffer(make([]byte, 0))
-	for {
-		if part, prefix, err = reader.ReadLine(); err != nil {
-			break
-		}
-		buffer.Write(part)
-		if !prefix {
-			lines = append(lines, buffer.String())
-			buffer.Reset()
-		}
+	reader := csv.NewReader(file)
+	if names, err = reader.Read(); err != nil {
+		return
 	}
-	if err == io.EOF {
-		err = nil
+	return
+}
+
+func letterSum(s string) (sum int) {
+	for _, c := range s {
+		sum += int(c - 'A') + 1
 	}
 	return
 }
 
 func Problem022() string {
-	names, err := readLines("../data/p022_names.txt")
+	names, err := readNames("../data/p022_names.txt")
 	if err != nil {
-		return ""
+		return err.Error()
 	}
-	return fmt.Sprint(len(names))
+	sort.Strings(names)
+	sum := 0
+	for index, name := range names {
+		sum += (index+1) * letterSum(name)
+	}
+	return fmt.Sprint(sum)
 }
 
 func init() {

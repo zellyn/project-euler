@@ -16,3 +16,7 @@ func Problem006() string {
 	sq := sum * sum
 	return fmt.Sprint(sq - sumsq)
 }
+
+func init() {
+     Functions[6] = Problem006
+}

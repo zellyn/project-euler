@@ -25,3 +25,7 @@ func Problem019() string {
 	}
 	return fmt.Sprint(sundays)
 }
+
+func init() {
+     Functions[19] = Problem019
+}

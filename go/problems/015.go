@@ -22,3 +22,7 @@ func Problem015() string {
 	}
 	return fmt.Sprint(product)
 }
+
+func init() {
+     Functions[15] = Problem015
+}

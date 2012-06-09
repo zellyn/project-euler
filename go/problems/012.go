@@ -24,3 +24,7 @@ func Problem012() string {
 	}
 	return ""
 }
+
+func init() {
+     Functions[12] = Problem012
+}

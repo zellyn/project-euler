@@ -60,3 +60,7 @@ func Problem011() string {
 	}
 	return fmt.Sprint(max)
 }
+
+func init() {
+     Functions[11] = Problem011
+}

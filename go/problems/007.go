@@ -13,3 +13,7 @@ import (
 func Problem007() string {
 	return fmt.Sprint(primes.Get(10000))
 }
+
+func init() {
+     Functions[7] = Problem007
+}

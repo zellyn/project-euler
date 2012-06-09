@@ -4,10 +4,7 @@ echo "gofmt................................"
 [ -n "$(gofmt -s -d *.go)" ] && gofmt -s -d *.go && exit
 
 echo "Building............................."
-for i in ???.go
-do
-    go build $i || exit
-done
+go build runner.go
 
 pairs="001-233168 002-4613732 003-6857 004-906609 005-232792560\
  006-25164150 007-104743 008-40824 009-31875000 010-142913828922\
@@ -33,9 +30,7 @@ do
     testnum=${pair%%-*}
     expected=${pair#*-}
     echo -n "$testnum: "
-    [[ -f $testnum ]] || echo "doesn't exist"
-    [[ -f $testnum ]] || exit
-    a=$(./$testnum) || echo "Error running"
+    a=$(./runner $testnum) || echo "Error running"
     [ "$a" == "$expected" ] && echo "passed" || echo "Wrong answer: Expected $expected, got $a."
     [ "$a" == "$expected" ] || exit;
 done

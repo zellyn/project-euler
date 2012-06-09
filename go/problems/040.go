@@ -10,3 +10,7 @@ import "fmt"
 func Problem040() string {
 	return fmt.Sprintf("%d", 0)
 }
+
+func init() {
+     Functions[40] = Problem040
+}

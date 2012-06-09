@@ -28,3 +28,7 @@ func Problem004() string {
 	}
 	return fmt.Sprint(max)
 }
+
+func init() {
+     Functions[4] = Problem004
+}

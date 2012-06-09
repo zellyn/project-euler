@@ -122,3 +122,7 @@ func Problem013() string {
 	}
 	return fmt.Sprint(sum.String()[:10])
 }
+
+func init() {
+     Functions[13] = Problem013
+}

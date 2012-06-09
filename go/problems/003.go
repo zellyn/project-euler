@@ -15,3 +15,7 @@ func Problem003() string {
 	factors := primes.PrimeFactors(product)
 	return fmt.Sprint(factors[len(factors)-1].Prime)
 }
+
+func init() {
+     Functions[3] = Problem003
+}

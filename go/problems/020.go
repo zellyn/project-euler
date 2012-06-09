@@ -17,3 +17,7 @@ func Problem020() string {
 	}
 	return fmt.Sprint(sum)
 }
+
+func init() {
+     Functions[20] = Problem020
+}

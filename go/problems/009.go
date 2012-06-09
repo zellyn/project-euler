@@ -17,3 +17,7 @@ func Problem009() string {
 	}
 	return ""
 }
+
+func init() {
+     Functions[9] = Problem009
+}

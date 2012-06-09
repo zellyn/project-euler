@@ -50,3 +50,7 @@ func Problem022() string {
 	}
 	return fmt.Sprint(len(names))
 }
+
+func init() {
+     Functions[22] = Problem022
+}

@@ -23,3 +23,7 @@ func Problem005() string {
 	}
 	return fmt.Sprint(total)
 }
+
+func init() {
+     Functions[5] = Problem005
+}

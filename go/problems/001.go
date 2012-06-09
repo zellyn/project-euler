@@ -16,3 +16,7 @@ func Problem001() string {
 	}
 	return fmt.Sprintf("%d", total)
 }
+
+func init() {
+     Functions[1] = Problem001
+}

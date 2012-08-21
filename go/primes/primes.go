@@ -4,6 +4,12 @@ import (
 	"sort"
 )
 
+type Int64s []int64
+
+func (s Int64s) Len() int { return len(s) }
+func (s Int64s) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
+func (s Int64s) Less(i, j int) bool { return s[i] < s[j] }
+
 var primes []int64 = []int64{2, 3, 5}
 var last int64 = 5
 var inc int64 = 2
@@ -72,6 +78,26 @@ func PrimeFactors(product int64) []Factor {
 		result = append(result, Factor{p, count})
 	}
 	return result
+}
+
+// ProperDivisors Returns all factors of product.
+func ProperDivisors(product int64) (result []int64) {
+	seen := map[int64]bool{
+		1: true,
+		product: true,
+	}
+	result = append(result, 1)
+	for _, factor := range PrimeFactors(product) {
+		for i := 0; i < factor.Count; i++ {
+			for _, oldFactor := range(result) {
+				if newFactor := oldFactor * factor.Prime; !seen[newFactor] {
+					seen[newFactor] = true
+					result = append(result, newFactor)
+				}
+			}
+		}
+	}
+	return
 }
 
 func SumDivisors(product int64) int64 {

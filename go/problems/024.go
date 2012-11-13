@@ -5,10 +5,22 @@
 
 package problems
 
-import "fmt"
+import (
+	"../util"
+)
+
+func NthPerm(digits string, index int) string {
+	if len(digits) == 1 {
+		return digits
+	}
+	fac := util.Factorial(len(digits) - 1)
+	i := index / fac
+	return digits[i:i+1] + NthPerm(digits[:i] + digits[i+1:], index % fac)
+}
 
 func Problem024() string {
-	return fmt.Sprintf("%d", 0)
+	initial := "0123456789"
+	return NthPerm(initial, 999999)
 }
 
 func init() {

@@ -5,10 +5,19 @@
 
 package problems
 
-import "fmt"
+import (
+	"math/big"
+	"fmt"
+)
 
 func Problem025() string {
-	return fmt.Sprintf("%d", 0)
+	f1, f2 := big.NewInt(1), big.NewInt(1)
+	var i int
+	for i = 2; len(f2.String()) < 1000; i++ {
+		f1.Add(f1, f2)
+		f2, f1 = f1, f2
+	}
+	return fmt.Sprintf("%d", i)
 }
 
 func init() {

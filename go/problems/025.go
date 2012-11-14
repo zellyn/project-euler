@@ -6,8 +6,8 @@
 package problems
 
 import (
-	"math/big"
 	"fmt"
+	"math/big"
 )
 
 func Problem025() string {
@@ -21,5 +21,5 @@ func Problem025() string {
 }
 
 func init() {
-     Functions[25] = Problem025
+	Functions[25] = Problem025
 }

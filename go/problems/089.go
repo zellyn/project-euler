@@ -11,5 +11,5 @@ func Problem089() string {
 }
 
 func init() {
-     Functions[89] = Problem089
+	Functions[89] = Problem089
 }

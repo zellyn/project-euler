@@ -14,7 +14,7 @@ import (
 
 // Read a whole file into the memory and store it as array of lines
 func readNames(path string) (names []string, err error) {
-	var file   *os.File
+	var file *os.File
 	if file, err = os.Open(path); err != nil {
 		return
 	}
@@ -29,7 +29,7 @@ func readNames(path string) (names []string, err error) {
 
 func letterSum(s string) (sum int) {
 	for _, c := range s {
-		sum += int(c - 'A') + 1
+		sum += int(c-'A') + 1
 	}
 	return
 }
@@ -42,11 +42,11 @@ func Problem022() string {
 	sort.Strings(names)
 	sum := 0
 	for index, name := range names {
-		sum += (index+1) * letterSum(name)
+		sum += (index + 1) * letterSum(name)
 	}
 	return fmt.Sprint(sum)
 }
 
 func init() {
-     Functions[22] = Problem022
+	Functions[22] = Problem022
 }

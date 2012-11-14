@@ -11,15 +11,15 @@ func repeatLength(i int) int {
 	positionForQuotient := make(map[int]int)
 	index, q := 0, 1
 	for {
-		for ; q < i ; {
+		for q < i {
 			index++
 			q *= 10
 		}
 		// Non-repeating
-		if ((q % i) == 0) {
+		if (q % i) == 0 {
 			return 0
 		}
-		q -= i * (q/i)
+		q -= i * (q / i)
 		if positionForQuotient[q] > 0 {
 			return index - positionForQuotient[q]
 		}
@@ -39,5 +39,5 @@ func Problem026() string {
 }
 
 func init() {
-     Functions[26] = Problem026
+	Functions[26] = Problem026
 }

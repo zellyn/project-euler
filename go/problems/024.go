@@ -15,7 +15,7 @@ func NthPerm(digits string, index int) string {
 	}
 	fac := util.Factorial(len(digits) - 1)
 	i := index / fac
-	return digits[i:i+1] + NthPerm(digits[:i] + digits[i+1:], index % fac)
+	return digits[i:i+1] + NthPerm(digits[:i]+digits[i+1:], index%fac)
 }
 
 func Problem024() string {
@@ -24,5 +24,5 @@ func Problem024() string {
 }
 
 func init() {
-     Functions[24] = Problem024
+	Functions[24] = Problem024
 }

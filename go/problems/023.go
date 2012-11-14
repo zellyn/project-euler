@@ -47,7 +47,7 @@ func Problem023() string {
 		}
 	}
 	sum := int64(0)
-	for i:=int64(0); i <= 28123; i++ {
+	for i := int64(0); i <= 28123; i++ {
 		if !summable[i] {
 			sum += i
 		}
@@ -56,5 +56,5 @@ func Problem023() string {
 }
 
 func init() {
-     Functions[23] = Problem023
+	Functions[23] = Problem023
 }

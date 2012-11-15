@@ -5,10 +5,48 @@
 
 package problems
 
-import "fmt"
+import (
+	"fmt"
+
+	"../primes"
+)
+
+type PrimesLt100 [25]int
+
+var indexes map[int64]int
+
+func initIndexes() {
+	indexes = make(map[int64]int)
+	for n := 0; n < 25; n++ {
+		indexes[primes.Get(n)] = n
+	}
+}
+
+func factors(n int) (result PrimesLt100) {
+	for _, factor := range primes.PrimeFactors(int64(n)) {
+		result[indexes[factor.Prime]] = factor.Count
+	}
+	return
+}
+
+func (p *PrimesLt100) Power(n int) {
+	for i := 0; i < 25; i++ {
+		p[i] *= n
+	}
+}
 
 func Problem029() string {
-	return fmt.Sprintf("%d", 0)
+	initIndexes()
+	seen := make(map[PrimesLt100]bool)
+	for a := 2; a <= 100; a++ {
+		aFactors := factors(a)
+		for b := 2; b <= 100; b++ {
+			copy := aFactors
+			copy.Power(b)
+			seen[copy] = true
+		}
+	}
+	return fmt.Sprintf("%d", len(seen))
 }
 
 func init() {

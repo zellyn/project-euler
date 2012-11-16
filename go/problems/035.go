@@ -12,6 +12,11 @@ import (
 )
 
 func allRotationsPrime(n int64) bool {
+	for nn := n / 10; nn > 0 ; nn /= 10 {
+		if nn & 1 == 0 {
+			return false
+		}
+	}
 	l := int(math.Log10(float64(n)))
 	mult := int64(math.Pow10(l))
 	for i := 0; i < l; i++ {

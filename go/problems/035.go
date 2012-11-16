@@ -12,8 +12,8 @@ import (
 )
 
 func allRotationsPrime(n int64) bool {
-	for nn := n / 10; nn > 0 ; nn /= 10 {
-		if nn & 1 == 0 {
+	for nn := n / 10; nn > 0; nn /= 10 {
+		if nn&1 == 0 {
 			return false
 		}
 	}

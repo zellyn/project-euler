@@ -9,8 +9,22 @@ package problems
 
 import "fmt"
 
+func SumOfFifthPowers(n int) (sum int) {
+	for ; n > 0; n /= 10 {
+		u := n % 10
+		sum += (u * u * u * u * u)
+	}
+	return
+}
+
 func Problem030() string {
-	return fmt.Sprintf("%d", 0)
+	sum := 0
+	for n := 2; n < 354294; n++ {
+		if n == SumOfFifthPowers(n) {
+			sum += n
+		}
+	}
+	return fmt.Sprintf("%d", sum)
 }
 
 func init() {

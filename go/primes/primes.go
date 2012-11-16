@@ -43,6 +43,9 @@ func Get(index int) int64 {
 }
 
 func IsPrime(candidate int64) bool {
+	if candidate & 1 == 0 {
+		return false
+	}
 	if last >= candidate {
 		index := sort.Search(len(primes), func(i int) bool { return primes[i] >= candidate })
 		return primes[index] == candidate

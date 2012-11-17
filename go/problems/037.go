@@ -5,10 +5,36 @@
 
 package problems
 
-import "fmt"
+import (
+	"fmt"
+
+	"../primes"
+)
+
+func truncatable(n int64) bool {
+	// even digits kill it (except leading 2)
+	for nn := n / 10; nn > 2; nn /= 10 {
+		if nn&1 == 0 {
+			return false
+		}
+	}
+	for pow10 := int64(10); pow10 < n; pow10 *= 10 {
+		if !primes.IsPrime(n%pow10) || !primes.IsPrime(n/pow10) {
+			return false
+		}
+	}
+	return true
+}
 
 func Problem037() string {
-	return fmt.Sprintf("%d", 0)
+	count, sum := 0, int64(0)
+	for n := 4; count < 11; n++ {
+		if p := primes.Get(n); truncatable(p) {
+			sum += p
+			count++
+		}
+	}
+	return fmt.Sprintf("%d", sum)
 }
 
 func init() {

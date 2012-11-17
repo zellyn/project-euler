@@ -43,7 +43,7 @@ func Get(index int) int64 {
 }
 
 func IsPrime(candidate int64) bool {
-	if candidate & 1 == 0 {
+	if candidate > 2 && candidate & 1 == 0 {
 		return false
 	}
 	if last >= candidate {

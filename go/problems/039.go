@@ -17,7 +17,7 @@ func Problem039() string {
 		for b := a + 1; b < 500; b++ {
 			sq := a*a + b*b
 			c := int(math.Sqrt(float64(sq)))
-			if a + b + c <= 1000 && a*a + b*b == c*c {
+			if a+b+c <= 1000 && a*a+b*b == c*c {
 				counts[a+b+c] += 1
 				if counts[a+b+c] > max {
 					n, max = a+b+c, counts[a+b+c]

@@ -23,7 +23,7 @@ func add() {
 	for {
 		last += inc
 		inc = 6 - inc
-		for _, p := range primes {
+		for _, p := range primes[2:] {
 			if last%p == 0 {
 				break
 			}

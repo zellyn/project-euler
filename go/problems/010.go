@@ -14,7 +14,7 @@ func Problem010() string {
 	var sum int64 = 0
 	i := 0
 	for {
-		p := primes.Get(i)
+		p := primes.Get64(i)
 		i++
 		if p >= 2000000 {
 			break

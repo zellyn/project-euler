@@ -11,14 +11,14 @@ import (
 	"../primes"
 )
 
-func allRotationsPrime(n int64) bool {
+func allRotationsPrime(n int) bool {
 	for nn := n / 10; nn > 0; nn /= 10 {
 		if nn&1 == 0 {
 			return false
 		}
 	}
 	l := int(math.Log10(float64(n)))
-	mult := int64(math.Pow10(l))
+	mult := int(math.Pow10(l))
 	for i := 0; i < l; i++ {
 		n = n/10 + mult*(n%10)
 		if !primes.IsPrime(n) {

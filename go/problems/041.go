@@ -10,7 +10,7 @@ import (
 	"../primes"
 )
 
-func pandigitalN(n int64) bool {
+func pandigitalN(n int) bool {
 	mask := 0
 	count := uint(0)
 	for ; n > 0; n /= 10 {
@@ -21,7 +21,7 @@ func pandigitalN(n int64) bool {
 }
 
 func Problem041() string {
-	max := int64(0)
+	max := 0
 	for n := 0; ; n++ {
 		p := primes.Get(n)
 		// sum(1..9) == 45, so 1..8 and 1..9 are divisible by 3

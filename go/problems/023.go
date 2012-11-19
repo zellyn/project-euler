@@ -12,17 +12,17 @@ import (
 	"../primes"
 )
 
-func isAbundant(candidate int64) bool {
-	var sum int64
+func isAbundant(candidate int) bool {
+	sum := 0
 	for _, divisor := range primes.ProperDivisors(candidate) {
 		sum += divisor
 	}
 	return sum > candidate
 }
 
-func findAbundants() (result map[int64]bool) {
-	result = make(map[int64]bool)
-	for i := int64(12); i < 28123-12; i++ {
+func findAbundants() (result map[int]bool) {
+	result = make(map[int]bool)
+	for i := 12; i < 28123-12; i++ {
 		if isAbundant(i) {
 			result[i] = true
 		}
@@ -33,11 +33,11 @@ func findAbundants() (result map[int64]bool) {
 func Problem023() string {
 	summable := make([]bool, 28124)
 	abundantsMap := findAbundants()
-	abundants := make([]int64, 0, len(abundantsMap))
+	abundants := make([]int, 0, len(abundantsMap))
 	for a, _ := range abundantsMap {
 		abundants = append(abundants, a)
 	}
-	sort.Sort(primes.Int64s(abundants))
+	sort.Ints(abundants)
 	for index, a1 := range abundants {
 		for _, a2 := range abundants[index:] {
 			if a1+a2 > 28123 {
@@ -46,8 +46,8 @@ func Problem023() string {
 			summable[a1+a2] = true
 		}
 	}
-	sum := int64(0)
-	for i := int64(0); i <= 28123; i++ {
+	sum := 0
+	for i := 0; i <= 28123; i++ {
 		if !summable[i] {
 			sum += i
 		}

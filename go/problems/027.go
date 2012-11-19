@@ -13,7 +13,7 @@ import (
 
 func PrimesFor(a, b int) int {
 	for n := 0; ; n++ {
-		if !primes.IsPrime(int64(n*n + a*n + b)) {
+		if !primes.IsPrime(n*n + a*n + b) {
 			return n
 		}
 	}

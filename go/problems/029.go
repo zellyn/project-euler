@@ -13,17 +13,17 @@ import (
 
 type PrimesLt100 [25]int
 
-var indexes map[int64]int
+var indexes map[int]int
 
 func initIndexes() {
-	indexes = make(map[int64]int)
+	indexes = make(map[int]int)
 	for n := 0; n < 25; n++ {
 		indexes[primes.Get(n)] = n
 	}
 }
 
 func factors(n int) (result PrimesLt100) {
-	for _, factor := range primes.PrimeFactors(int64(n)) {
+	for _, factor := range primes.PrimeFactors(n) {
 		result[indexes[factor.Prime]] = factor.Count
 	}
 	return

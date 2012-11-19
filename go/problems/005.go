@@ -11,10 +11,10 @@ import (
 )
 
 func Problem005() string {
-	var total int64 = 1
-	counts := make(map[int64]int)
+	var total int = 1
+	counts := make(map[int]int)
 	for i := 2; i <= 20; i++ {
-		for _, factor := range primes.PrimeFactors(int64(i)) {
+		for _, factor := range primes.PrimeFactors(i) {
 			for factor.Count > counts[factor.Prime] {
 				total *= factor.Prime
 				counts[factor.Prime]++

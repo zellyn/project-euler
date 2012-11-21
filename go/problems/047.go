@@ -5,10 +5,25 @@
 
 package problems
 
-import "fmt"
+import (
+	"fmt"
+
+	"../primes"
+)
 
 func Problem047() string {
-	return fmt.Sprintf("%d", 0)
+	found := 0
+	for i := 10; ; i++ {
+		if len(primes.PrimeFactors(i)) == 4 {
+			found++
+			if found == 4 {
+				return fmt.Sprint(i + 1 - 4)
+			}
+		} else {
+			found = 0
+		}
+	}
+	panic("unreachable")
 }
 
 func init() {

@@ -81,7 +81,9 @@ func PrimeFactors(product int) []Factor {
 			count++
 			product /= p
 		}
-		result = append(result, Factor{p, count})
+		if count > 0 {
+			result = append(result, Factor{p, count})
+		}
 	}
 	return result
 }
@@ -178,7 +180,9 @@ func PrimeFactors64(product int64) []Factor64 {
 			count++
 			product /= p
 		}
-		result = append(result, Factor64{p, count})
+		if count > 0 {
+			result = append(result, Factor64{p, count})
+		}
 	}
 	return result
 }

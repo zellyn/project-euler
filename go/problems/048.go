@@ -7,7 +7,17 @@ package problems
 import "fmt"
 
 func Problem048() string {
-	return fmt.Sprintf("%d", 0)
+	sum := int64(0)
+	for i := int64(1); i <= 1000; i++ {
+		littleSum := i
+		for j := int64(1); j < i; j++ {
+			littleSum *= i
+			littleSum %= 10000000000
+		}
+		sum += littleSum
+		sum %= 10000000000
+	}
+	return fmt.Sprint(sum)
 }
 
 func init() {

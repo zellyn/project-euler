@@ -7,8 +7,28 @@ package problems
 
 import "fmt"
 
+func digitCounts(n int) (result [10]int) {
+	for ; n > 0; n /= 10 {
+		result[n%10] += 1
+	}
+	return result
+}
+
 func Problem052() string {
-	return fmt.Sprintf("%d", 0)
+	for n := 100; ; n++ {
+		dc := digitCounts(n)
+		found := true
+		for i := 2; i <= 6; i++ {
+			if digitCounts(n*i) != dc {
+				found = false
+				break
+			}
+		}
+		if found {
+			return fmt.Sprint(n)
+		}
+	}
+	panic("unreachable")
 }
 
 func init() {

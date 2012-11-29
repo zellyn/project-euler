@@ -5,10 +5,25 @@
 
 package problems
 
-import "fmt"
+import (
+	"fmt"
+
+	"../primes"
+)
 
 func Problem058() string {
-	return fmt.Sprintf("%d", 0)
+	last, length, prime, total := 9, 3, 3, 5
+	for prime*10 > total {
+		length += 2
+		for i := 0; i < 4; i++ {
+			last += length - 1
+			total++
+			if primes.IsPrime(last) {
+				prime++
+			}
+		}
+	}
+	return fmt.Sprint(length)
 }
 
 func init() {

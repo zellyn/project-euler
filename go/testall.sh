@@ -1,7 +1,8 @@
 #! /usr/bin/env bash
 
 echo "gofmt................................"
-[ -n "$(gofmt -s -d *.go)" ] && gofmt -s -d *.go && exit
+fmt_out=$(gofmt -s -d $(find . -name '*.go'))
+if [ -n "$fmt_out" ]; then echo "$fmt_out"; exit; fi
 
 echo "Building............................."
 go build runner.go || exit

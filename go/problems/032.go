@@ -36,7 +36,7 @@ func Problem032() string {
 		}
 	}
 	sum := 0
-	for k, _ := range found {
+	for k := range found {
 		sum += k
 	}
 	return fmt.Sprintf("%d", sum)

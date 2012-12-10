@@ -34,7 +34,7 @@ func Problem023() string {
 	summable := make([]bool, 28124)
 	abundantsMap := findAbundants()
 	abundants := make([]int, 0, len(abundantsMap))
-	for a, _ := range abundantsMap {
+	for a := range abundantsMap {
 		abundants = append(abundants, a)
 	}
 	sort.Ints(abundants)

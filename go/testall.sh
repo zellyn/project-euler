@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 echo "gofmt................................"
-fmt_out=$(gofmt -s -d $(find . -name '*.go'))
+fmt_out=$(gofmt -s -d $(find . -name '*.go') 2>&1)
 if [ -n "$fmt_out" ]; then echo "$fmt_out"; exit; fi
 
 echo "Building............................."

@@ -4,10 +4,20 @@
 
 package problems
 
-import "fmt"
+import (
+	"fmt"
+
+	"../contfrac"
+)
 
 func Problem064() string {
-	return fmt.Sprintf("%d", 0)
+	count := 0
+	for n := 1; n < 10000; n++ {
+		if (len(contfrac.Sqrt(n))-1)%2 == 1 {
+			count++
+		}
+	}
+	return fmt.Sprint(count)
 }
 
 func init() {

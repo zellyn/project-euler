@@ -18,7 +18,7 @@ type Friendly struct {
 	friends []int64
 }
 
-func generateFriendlies(c chan Friendly, stop chan bool) {
+func generateFriendlies(c chan<- Friendly, stop <-chan bool) {
 	teni := int64(10)
 	for i := 2; ; i++ {
 		pi := primes.Get64(i)
@@ -65,7 +65,7 @@ func allFriendsKnown(newFriends, oldFriends []int64) bool {
 	return true
 }
 
-func findFive(c chan Friendly, stop chan bool) (sum int64) {
+func findFive(c <-chan Friendly, stop chan<- bool) (sum int64) {
 	// Map from number to all sets with numbers smaller
 	sets := make(map[int64][][]int64)
 	for {

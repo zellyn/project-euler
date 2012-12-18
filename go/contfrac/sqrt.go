@@ -38,3 +38,24 @@ func Sqrt(n int) (result []int) {
 	}
 	panic("unreachable")
 }
+
+func SqrtSeq(n int) <-chan int {
+	sqrt := Sqrt(n)
+	c := make(chan int)
+	if len(sqrt) == 1 {
+		go func() {
+			c <- sqrt[0]
+			close(c)
+		}()
+	} else {
+		go func() {
+			c <- sqrt[0]
+			for {
+				for _, s := range sqrt[1:] {
+					c <- s
+				}
+			}
+		}()
+	}
+	return c
+}

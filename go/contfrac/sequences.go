@@ -4,8 +4,8 @@ import (
 	"math/big"
 )
 
-func E() (c chan int) {
-	c = make(chan int)
+func E() <-chan int {
+	c := make(chan int)
 	go func() {
 		c <- 2
 		i := 2
@@ -21,8 +21,8 @@ func E() (c chan int) {
 
 // Enumerate the convergents of a continued fraction, using
 // http://en.wikipedia.org/wiki/Fundamental_recurrence_formulas
-func Convergents(in chan int) (out chan [2]*big.Int) {
-	out = make(chan [2]*big.Int)
+func Convergents(in <-chan int) <-chan [2]*big.Int {
+	out := make(chan [2]*big.Int)
 
 	go func() {
 		b_nm1 := big.NewInt(int64(<-in))

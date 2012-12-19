@@ -5,9 +5,10 @@
 
 package problems
 
-import "fmt"
-
-const SIZE = 15
+import (
+	"fmt"
+	"math"
+)
 
 var triangle []int = []int{
 	75,
@@ -26,7 +27,7 @@ var triangle []int = []int{
 	63, 66, 4, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31,
 	4, 62, 98, 27, 23, 9, 70, 98, 73, 93, 38, 53, 60, 4, 23}
 
-func tri(row, col int) int {
+func tri(triangle []int, row, col int) int {
 	return triangle[row*(row+1)/2+col]
 }
 
@@ -37,14 +38,19 @@ func max(a, b int) int {
 	return b
 }
 
-func Problem018() string {
-	var maxes [SIZE + 1]int
-	for row := SIZE - 1; row >= 0; row-- {
+func maxTriPath(triangle []int) int {
+	size := int(math.Sqrt(float64(len(triangle) * 2)))
+	maxes := make([]int, size+1)
+	for row := size - 1; row >= 0; row-- {
 		for col := 0; col <= row; col++ {
-			maxes[col] = max(maxes[col], maxes[col+1]) + tri(row, col)
+			maxes[col] = max(maxes[col], maxes[col+1]) + tri(triangle, row, col)
 		}
 	}
-	return fmt.Sprint(maxes[0])
+	return maxes[0]
+}
+
+func Problem018() string {
+	return fmt.Sprint(maxTriPath(triangle))
 }
 
 func init() {

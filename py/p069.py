@@ -28,7 +28,7 @@ def max_n_lt(limit):
 def p069():
     # Playing around with max_n_lt, we see that the local maxima lie
     # at products of consecutive primes. Which makes sense, since they
-    # have the most divisors.
+    # have the fewest divisors.
 
     # 6 = 2 * 3
     # 30 = 2 * 3 * 5

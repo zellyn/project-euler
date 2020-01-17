@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"sort"
 
-	"../primes"
+	"github.com/zellyn/project-euler/go/primes"
 )
 
 func isAbundant(candidate int) bool {

@@ -5,9 +5,7 @@
 
 package problems
 
-import (
-	"../util"
-)
+import "github.com/zellyn/project-euler/go/util"
 
 func NthPerm(digits string, index int) string {
 	if len(digits) == 1 {

@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"../contfrac"
+	"github.com/zellyn/project-euler/go/contfrac"
 )
 
 func bigDigitCount(n *big.Int) (count int) {

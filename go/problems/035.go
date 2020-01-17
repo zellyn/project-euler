@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"math"
 
-	"../primes"
+	"github.com/zellyn/project-euler/go/primes"
 )
 
 func allRotationsPrime(n int) bool {

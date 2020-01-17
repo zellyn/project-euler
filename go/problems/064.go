@@ -7,7 +7,7 @@ package problems
 import (
 	"fmt"
 
-	"../contfrac"
+	"github.com/zellyn/project-euler/go/contfrac"
 )
 
 func Problem064() string {

@@ -8,7 +8,7 @@ package problems
 import (
 	"fmt"
 
-	"../sequence"
+	"github.com/zellyn/project-euler/go/sequence"
 )
 
 func Problem045() string {

@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"../contfrac"
+	"github.com/zellyn/project-euler/go/contfrac"
 )
 
 // A little reading reveals that we can use continued fraction

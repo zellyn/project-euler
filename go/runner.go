@@ -5,7 +5,7 @@ import (
 	"os"
 	"strconv"
 
-	"./problems"
+	"github.com/zellyn/project-euler/go/problems"
 )
 
 func main() {

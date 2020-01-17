@@ -90,16 +90,14 @@ func PrimeFactors(product int) []Factor {
 
 // ProperDivisors Returns all factors of product.
 func ProperDivisors(product int) (result []int) {
-	seen := map[int]bool{
-		1:       true,
-		product: true,
-	}
 	result = append(result, 1)
 	for _, factor := range PrimeFactors(product) {
-		for i := 0; i < factor.Count; i++ {
-			for _, oldFactor := range result {
-				if newFactor := oldFactor * factor.Prime; !seen[newFactor] {
-					seen[newFactor] = true
+		for _, oldFactor := range result {
+			pow := 1
+			for i := 0; i < factor.Count; i++ {
+				pow *= factor.Prime
+				newFactor := oldFactor * pow
+				if newFactor != product {
 					result = append(result, newFactor)
 				}
 			}

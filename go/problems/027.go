@@ -8,7 +8,7 @@ package problems
 import (
 	"fmt"
 
-	"../primes"
+	"github.com/zellyn/project-euler/go/primes"
 )
 
 func PrimesFor(a, b int) int {
